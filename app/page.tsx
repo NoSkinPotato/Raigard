@@ -3,7 +3,7 @@ import Image from "next/image";
 import { client } from "../src/lib/sanity";
 import ProductCard from "../Components/productCard";
 
-
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
 
