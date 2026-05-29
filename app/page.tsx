@@ -3,7 +3,7 @@ import Image from "next/image";
 import { client } from "../src/lib/sanity";
 import ProductCard from "../Components/productCard";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function Home() {
 
@@ -13,7 +13,8 @@ export default async function Home() {
       name,
       price,
       description,
-      image
+      image,
+      colorGradient
     }
   `);
   
@@ -27,7 +28,7 @@ export default async function Home() {
         height={100}
       />
     </header>
-    <section className="mx-auto max-w-7xl px-6 py-12 text-center">
+    {/* <section className="mx-auto max-w-7xl px-6 py-12 text-center">
         <h2 className="text-4xl font-bold">
           Welcome to My Store
         </h2>
@@ -35,15 +36,17 @@ export default async function Home() {
         <p className="mt-4 text-gray-600">
           Browse our collection and order directly via WhatsApp.
         </p>
-    </section>
-    <main className="mx-auto w-full max-w-7xl flex-1 px-6 pb-16">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    </section> */}
+      <main className="MainSection">
+        <div className="mx-auto w-full flex-1 max-w-[920px]">
+          <div className="grid gap-2 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
           {products.map((product: any) => (
             <ProductCard
               key={product._id}
               product={product}
             />
           ))}
+          </div>
         </div>
       </main>
       <footer className="border-t py-8">

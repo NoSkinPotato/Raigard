@@ -3,8 +3,14 @@
   background-color: #FFFFFF;
   color: white;
 
-  padding: 50px;
+  padding-top: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.MainSection{
+  background-color: #FFFFFF;
+  padding-left: 100px;
+   padding-right: 100px;
 }
