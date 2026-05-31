@@ -38,20 +38,20 @@ export default async function Home() {
         </p>
     </section> */}
       <main className="MainSection">
-        <div className="mx-auto w-full flex-1 max-w-[920px]">
-          <div className="grid gap-2 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
-          {products.map((product: any) => (
-            <ProductCard
-              key={product._id}
-              product={product}
-            />
-          ))}
+        <div className="mx-auto w-full flex-1 max-w-[900px]">
+          <div className="flex flex-wrap justify-center gap-3">
+            {products.map((product: any) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+              />
+            ))}
           </div>
         </div>
       </main>
       <footer className="border-t py-8">
         <div className="mx-auto max-w-7xl px-6 text-center text-sm text-gray-500">
-          © 2026 My Store • Order through WhatsApp
+          © 2026 Raigard • Order through WhatsApp
         </div>
       </footer>
     </div>
