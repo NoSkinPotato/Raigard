@@ -28,7 +28,7 @@ export default function ProductCard({ product }: any) {
       justify-center ">
         <div className="p-[4px] rounded-xl" >
           <Link href={`/productPage/${product._id}`}>
-           <div className="bg-[#c7c7c7] rounded-[10px] p-0.75 productBackground">
+           <div className="bg-[#F2F2F2] rounded-[10px] shadow-lg p-0.75 productBackground">
             <div className="absolute inset-1 rounded-[10px] productOverlap"
               style={
                 {

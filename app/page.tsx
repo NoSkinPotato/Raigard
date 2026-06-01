@@ -19,13 +19,13 @@ export default async function Home() {
   `);
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col ">
     <header className="Header">
       <Image className="HeaderLogo"
-        src="/Raigard.png"
+        src="/Picture/Raigard.png"
         alt="Store Logo"
-        width={200}
-        height={100}
+        width={325}
+        height={50}
       />
     </header>
     {/* <section className="mx-auto max-w-7xl px-6 py-12 text-center">
@@ -36,7 +36,7 @@ export default async function Home() {
         <p className="mt-4 text-gray-600">
           Browse our collection and order directly via WhatsApp.
         </p>
-    </section> */}
+    </section>  */}
       <main className="MainSection">
         <div className="mx-auto w-full flex-1 max-w-[900px]">
           <div className="flex flex-wrap justify-center gap-3">
@@ -49,11 +49,26 @@ export default async function Home() {
           </div>
         </div>
       </main>
+      <a
+        href="https://wa.me/6281296735238?text=Hi, I wanna buy"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-15 right-6 z-50 flex items-center
+        justify-center w-16 h-16 rounded-full bg-[#F2F2F2] shadow-lg transition-transform
+        hover:scale-110">
+        <Image
+          src="/Picture/WhatsApp.png"
+          alt="WhatsApp"
+          width={48}
+          height={48}
+        />
+      </a>
       <footer className="border-t py-8">
         <div className="mx-auto max-w-7xl px-6 text-center text-sm text-gray-500">
-          © 2026 Raigard • Order through WhatsApp
+          © 2026 RAIGARD • Product By PokeRaiku
         </div>
       </footer>
     </div>
+    
   );
 }

@@ -12,7 +12,7 @@
     font-family: AlatsiFont;
     src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
 
-    font-size: clamp(1.4rem, 3vw, 1rem);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
 
     line-height: 1;
 

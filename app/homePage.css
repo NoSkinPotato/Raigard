@@ -3,7 +3,6 @@
   background-color: #FFFFFF;
   color: white;
 
-  padding-top: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +11,6 @@
 .MainSection{
   background-color: #FFFFFF;
   padding-right: 15px;
-    padding-left: 15px;
-    padding-bottom: 25px;
+  padding-left: 15px;
+  padding-bottom: 25px;
 }
