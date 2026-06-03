@@ -1,6 +1,6 @@
 import "./homePage.css"
 import Image from "next/image";
-import { client } from "../src/lib/sanity";
+import { client } from "@/src/lib/sanity";
 import ProductCard from "../Components/productCard";
 
 export const revalidate = 60;
@@ -12,10 +12,11 @@ export default async function Home() {
       _id,
       name,
       price,
+      sequence,
       description,
       image,
       colorGradient
-    }
+    } | order(sequence asc)
   `);
   
   return (
@@ -24,7 +25,7 @@ export default async function Home() {
       <Image className="HeaderLogo"
         src="/Picture/Raigard.png"
         alt="Store Logo"
-        width={325}
+        width={250}
         height={50}
       />
     </header>
@@ -53,14 +54,24 @@ export default async function Home() {
         href="https://wa.me/6281296735238?text=Hi, I wanna buy"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-15 right-6 z-50 flex items-center
-        justify-center w-16 h-16 rounded-full bg-[#F2F2F2] shadow-lg transition-transform
+        className="fixed z-50 flex items-center
+        justify-center 
+        bottom-[3vh]
+        right-[3vw]
+
+        w-[clamp(6rem,6vw,10rem)]
+        h-[clamp(6rem,6vw,10rem)]
+
+        rounded-full bg-[#F2F2F2] shadow-lg transition-transform
         hover:scale-110">
         <Image
           src="/Picture/WhatsApp.png"
           alt="WhatsApp"
           width={48}
           height={48}
+          className="
+          w-[clamp(4rem,3vw,7rem)]
+          h-[clamp(4rem,3vw,7rem)]"
         />
       </a>
       <footer className="border-t py-8">

@@ -21,7 +21,7 @@ export default function ProductCard({ product }: any) {
   return (
     
     <div className="
-    relative w-[calc(33.333%-0.5rem)] 
+    relative min-w-[100px] w-[calc(33.333%-0.5rem)] 
     sm:w-[calc(25%-2rem)]
     md:w-[calc(25%-2rem)]
     lg:w-[calc(25%-2rem)]
@@ -35,14 +35,12 @@ export default function ProductCard({ product }: any) {
                   background: bottomGradient,
                 } 
               }> </div>
-            <div className="absolute inset-4.5 rounded-[10px] bg-white">
-            </div>
             <img
                 src={urlFor(product.image).width(600).url()}
                 alt={product.name}
                 width={600}
                 height={800}
-                className="relative h-full w-45  items-center justify-center z-10 "
+                className="relative h-full w-45  items-center justify-center "
               />
               <h3 className="ProductName" 
                 style={{

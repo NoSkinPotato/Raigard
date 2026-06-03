@@ -9,8 +9,15 @@ export const client = createClient({
 
 export async function getProduct(id: string) {
   const query = `
-    *[_type == "product" && _id == $id][0]
+    *[_type == "product" && _id == $id]{
+      _id,
+      name,
+      price,
+      description,
+      colorGradient,
+      mainImage,
+      sideImage
+    }
   `;
-
   return await client.fetch(query, { id });
 }
