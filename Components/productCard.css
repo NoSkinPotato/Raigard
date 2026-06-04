@@ -24,6 +24,17 @@
   src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
 }
 
+.ProductMainName{
+    padding-top: 15px;
+    font-family: AlatsiFont;
+    src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
+}
+
+.ProductMainDescription{
+    font-family: AlatsiFont;
+    src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
+}
+
 .productBackground:hover .productOverlap{
     opacity: 1;
 }
