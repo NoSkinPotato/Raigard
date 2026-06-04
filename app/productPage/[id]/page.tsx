@@ -25,7 +25,12 @@ export default async function ProductPage({
         colorGradient,
         mainImage,
         sideImage,
-        video{
+        smallVideo{
+          asset->{
+            url
+          }
+        },
+        bigVideo{
           asset->{
             url
           }
@@ -46,7 +51,7 @@ export default async function ProductPage({
       });
     }
 
-    if (product.video?.asset?.url) {
+    if (product.bigVideo?.asset?.url) {
       pageSlides.push({
         type: "video",
         width: 2160,
@@ -58,7 +63,7 @@ export default async function ProductPage({
         controls: false,
         sources: [
           {
-            src: product.video.asset.url,
+            src: product.bigVideo.asset.url,
             type: "video/mp4",
           },
         ],
@@ -145,13 +150,13 @@ export default async function ProductPage({
                   />
                 </ProductGallery>
               )}
-              {label == "Video" && product.video && (
+              {label == "Video" && product.smallVideo && (
                 <ProductGallery
                   slides={pageSlides}
                   index={2}
                 >
                 <video
-                  src={product.video.asset.url}
+                  src={product.smallVideo.asset.url}
                   autoPlay
                   muted
                   loop
