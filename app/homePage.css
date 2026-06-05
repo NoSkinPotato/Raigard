@@ -13,4 +13,17 @@
   padding-right: 15px;
   padding-left: 15px;
   padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+.CatalogText{
+
+  font-size: 35px;
+  font-family: AlatsiFont;
+  src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
+}
+
+@font-face {
+  font-family: AlatsiFont; 
+  src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
 }

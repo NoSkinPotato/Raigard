@@ -6,7 +6,7 @@ import { urlFor } from "@/src/lib/image";
 import ProductGallery from "@/Components/productGallery";
 import "yet-another-react-lightbox/styles.css";
 import "@/Components/productCard.css"
-
+import { preload } from "react-dom";
 
 
 export default async function ProductPage({
@@ -61,6 +61,7 @@ export default async function ProductPage({
         loop: true,
         playsInline: true,
         controls: false,
+        preload: false,
         sources: [
           {
             src: product.bigVideo.asset.url,

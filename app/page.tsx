@@ -2,6 +2,7 @@ import "./homePage.css"
 import Image from "next/image";
 import { client } from "@/src/lib/sanity";
 import ProductCard from "../Components/productCard";
+import Carousel from "../Components/Carousel"; 
 
 export const revalidate = 60;
 
@@ -18,6 +19,14 @@ export default async function Home() {
       colorGradient
     } | order(sequence asc)
   `);
+
+  const carousels = await client.fetch(`
+    *[_type == "carousel"]{
+      _id,
+      Number,
+      image,
+    } | order(Number asc)
+  `);
   
   return (
     <div className="min-h-screen flex flex-col ">
@@ -29,15 +38,12 @@ export default async function Home() {
         height={50}
       />
     </header>
-    {/* <section className="mx-auto max-w-7xl px-6 py-12 text-center">
-        <h2 className="text-4xl font-bold">
-          Welcome to My Store
+    <Carousel carousels={carousels} />
+    <section className="mx-auto max-w-7xl px-6 py-12 text-center">
+        <h2 className="text-4xl font-bold CatalogText">
+          Browse Our Catalogs
         </h2>
-
-        <p className="mt-4 text-gray-600">
-          Browse our collection and order directly via WhatsApp.
-        </p>
-    </section>  */}
+    </section> 
       <main className="MainSection">
         <div className="mx-auto w-full flex-1 max-w-[900px]">
           <div className="flex flex-wrap justify-center gap-3">

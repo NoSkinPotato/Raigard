@@ -5,6 +5,7 @@ import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import Video from "yet-another-react-lightbox/plugins/video";
 import { HTMLAttributes } from "react";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
 import "yet-another-react-lightbox/styles.css";
 
@@ -14,7 +15,7 @@ type Props = {
   index: number;
 } & HTMLAttributes<HTMLDivElement>;
 
-export default function ProductMediaGallery({
+export default function ProductGallery({
   slides,
   children,
   index,
@@ -35,7 +36,7 @@ export default function ProductMediaGallery({
         close={() => setOpen(false)}
         index={index}
         slides={slides}
-        plugins={[Video]}
+        plugins={[Video, Zoom]}
       />
     </>
   );
