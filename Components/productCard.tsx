@@ -40,7 +40,7 @@ export default function ProductCard({ product }: any) {
                 alt={product.name}
                 width={600}
                 height={800}
-                className="relative h-full w-45  items-center justify-center "
+                className="relative h-full w-45 "
               />
               <h3 className="ProductName" 
                 style={{

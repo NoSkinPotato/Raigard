@@ -2,22 +2,33 @@
   width: 100%;
   background-color: #FFFFFF;
   color: white;
-
+  padding-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .MainSection{
-  background-color: #FFFFFF;
+  background-color: white;
   padding-right: 15px;
   padding-left: 15px;
   padding-bottom: 25px;
   padding-top: 25px;
 }
 
-.CatalogText{
+.NavBar{
+  font-size: 20px;
+  color: black;
+  font-family: AlatsiFont;
+  src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
+}
 
+.CatalogSection{
+  
   font-size: 35px;
   font-family: AlatsiFont;
   src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
@@ -26,4 +37,47 @@
 @font-face {
   font-family: AlatsiFont; 
   src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
+}
+
+@font-face {
+  font-family: JosefinSansBold; 
+  src: url("../public/Font/JosefinSans-Bold.ttf") format("truetype"); 
+}
+
+@font-face {
+  font-family: JosefinSansItalic; 
+  src: url("../public/Font/JosefinSans-Italic.ttf") format("truetype"); 
+}
+
+@font-face {
+  font-family: JosefinSansMedium; 
+  src: url("../public/Font/JosefinSans-Medium.ttf") format("truetype"); 
+}
+
+.PreTagline{
+  color: #822e00;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  font-family: JosefinSansBold;
+}
+
+.Tagline1{
+  color: black;
+  font-size: clamp(1rem, 3.5vw, 1.25rem); 
+  font-family: AlatsiFont;
+  line-height: 3rem;
+}
+
+.Tagline2{
+  color: black;
+  font-size: clamp(3rem, 10vw, 4rem); 
+  font-family: AlatsiFont;
+  font-style: italic;
+}
+
+.TaglineDescr{
+  color: black;
+  font-size: 22px;
+  font-family: JosefinSansMedium; 
+  padding-bottom: 15px;
 }

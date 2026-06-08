@@ -239,8 +239,8 @@ export default function Carousel({
               transition-all duration-300 rounded-full
               ${
                 index === current
-                  ? "w-6 h-2 bg-white"
-                  : "w-2 h-2 bg-white/70 hover:bg-white/100"
+                  ? "w-6 h-2 bg-black"
+                  : "w-2 h-2 bg-black/30 hover:bg-black"
               }
             `}
             aria-label={`Go to slide ${index + 1}`}

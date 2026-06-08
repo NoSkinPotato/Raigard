@@ -3,9 +3,13 @@
     position: absolute;
     inset: 0;
 
-    display: flex;
     align-self: center;
     justify-content: center;
+    text-align: center;
+
+
+    margin-right: clamp(1.25rem, 4vw, 2rem); ;
+    margin-left: clamp(1.25rem, 4vw, 2rem); ;
 
     color: white;
 
