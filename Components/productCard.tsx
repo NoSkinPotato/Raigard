@@ -1,6 +1,7 @@
 import { urlFor } from "../src/lib/image";
 import "./productCard.css"
 import Link from "next/link";
+import FadeIn from "@/Components/FadeIn";
 
 export default function ProductCard({ product }: any) {
 
@@ -26,7 +27,8 @@ export default function ProductCard({ product }: any) {
     md:w-[calc(25%-2rem)]
     lg:w-[calc(25%-2rem)]
       justify-center ">
-        <div className="p-[4px] rounded-xl" >
+        <FadeIn>
+        <div className="p-[4px] rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" >
           <Link href={`/productPage/${product._id}`}>
            <div className="bg-[#F2F2F2] rounded-[10px] shadow-lg p-0.75 productBackground">
             <div className="absolute inset-1 rounded-[10px] productOverlap"
@@ -54,6 +56,7 @@ export default function ProductCard({ product }: any) {
           </div>
           </Link>
         </div>
+        </FadeIn>
     </div>
   );
 }
