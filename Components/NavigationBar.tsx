@@ -47,7 +47,7 @@ export default function Navbar() {
     { id: "catalog", label: "CATALOG" },
     { id: "story", label: "STORY" },
     { id: "marketplace", label: "MARKETPLACE" },
-    { id: "review", label: "REVIEW" },
+    // { id: "review", label: "REVIEW" },
   ];
 
   return (
@@ -58,7 +58,7 @@ export default function Navbar() {
         <div
           className={`
             flex items-center
-            rounded-full
+            rounded-xl
             border
             px-3
             py-2
@@ -76,8 +76,8 @@ export default function Navbar() {
               <a
                 href={`#${link.id}`}
                 className={`
-                  rounded-full
-                  px-2
+                  rounded-xl
+                  px-1.5
                   py-2
                   sm: text-sm
                   lg: text-md

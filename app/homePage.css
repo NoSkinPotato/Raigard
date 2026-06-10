@@ -63,7 +63,13 @@ html {
 
 .Story{
   color: black;
-  /* font-size: clamp(1.5rem, 3.5vw, 1.5rem);  */
+  font-size: clamp(1.15rem, 2vw, 1.5rem); 
+  font-family: AlatsiFont;
+  line-height: 1.5rem;
+}
+
+.StoryLast{
+  color: black;
   font-family: AlatsiFont;
   line-height: 2rem;
 }

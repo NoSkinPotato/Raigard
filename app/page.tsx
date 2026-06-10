@@ -159,17 +159,19 @@ export default async function Home() {
         </section> 
       </FadeIn>
       <FadeIn>
-        <h3 className="py-6 mx-12 md:mx-20 lg:mx-60 text-lg text-center Story">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
-          standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library, 
-          took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many 
-          decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets 
-          and more recently with desktop publishing software including versions of Lorem Ipsum.
+        <h3 className="py-10 mx-12 md:mx-20 lg:mx-40 text-center Story">
+          RAIGARD was created to challenge the idea that premium collector accessories must come at premium prices.
+          Inspired by the passion of collectors, we set out to create slab protection that delivers both luxury aesthetics and reliable protection without compromising affordability.
+          <br/><br/>Today, RAIGARD offers 20 distinctive colorways designed to help collectors express their style while keeping their slabs protected.
+          <br/><br/>This is only the beginning. <br/><br/>As we continue to grow, our goal remains the same: to make premium collecting more accessible and to build Indonesia’s leading ecosystem for collector accessories.
         </h3>
+        <h1 className="py-5 mx-12 md:mx-20 lg:mx-60 text-[1.75rem] text-center StoryLast">
+          RAIGARD, Affordable Luxury & Protection for Your Slabs.
+        </h1>
       </FadeIn>
 
       <FadeIn>
-      <section id="marketplace" className="rounded-[30px] mx-5 mt-5 text-center bg-black CatalogSection">
+      <section id="marketplace" className="rounded-[30px] mx-5 my-5 text-center bg-black CatalogSection">
         <div className="py-7">
           <h2 className="text-4xl md:text-5xl font-bold text-white">
             MARKETPLACE
@@ -188,7 +190,7 @@ export default async function Home() {
       </section>  
       </FadeIn>
       <FadeIn>
-       <div className="grid md:grid-cols-3 gap-8 mt-7 mb-7 px-15 mx-auto w-full flex-1 max-w-[1000px]">
+       <div className="grid md:grid-cols-3 gap-8 my-10 px-15 mx-auto w-full flex-1 max-w-[1000px]">
           {marketplaces.map((store) => (
             <div
               key={store.name}
@@ -233,7 +235,7 @@ export default async function Home() {
         </div>
         </FadeIn>
       <a
-        href="https://wa.me/6281282036413?text=Hi, I wanna buy"
+        href="https://wa.me/6281282036413?text=Hi RAIGARD, mau order dong"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed z-50 flex items-center
@@ -254,8 +256,8 @@ export default async function Home() {
           h-full"
         />
       </a>
-      <footer className="border-t py-8 bg-black">
-        <div className="mx-auto max-w-7xl px-6 text-center text-sm text-gray-500">
+      <footer className="border-t py-10 bg-black">
+        <div className="mx-auto max-w-7xl px-6 text-center text-md text-gray-500">
           © 2026 RAIGARD • LUXURY & PROTECTION FOR YOUR SLAB
         </div>
       </footer>
