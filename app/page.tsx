@@ -189,7 +189,7 @@ export default async function Home() {
         <h3 className="py-10 mx-12 md:mx-20 lg:mx-40 text-center Story">
           RAIGARD was created to challenge the idea that premium collector accessories must come at premium prices.
           Inspired by the passion of collectors, we set out to create slab protection that delivers both luxury aesthetics and reliable protection without compromising affordability.
-          <br/><br/>Today, RAIGARD offers 20 distinctive colorways designed to help collectors express their style while keeping their slabs protected.
+          <br/><br/>Today, RAIGARD offers 24 distinctive colorways designed to help collectors express their style while keeping their slabs protected.
           <br/><br/>This is only the beginning. <br/><br/>As we continue to grow, our goal remains the same: to make premium collecting more accessible and to build Indonesia’s leading ecosystem for collector accessories.
         </h3>
         <h1 className="py-5 mx-12 md:mx-20 lg:mx-60 text-[1.75rem] text-center StoryLast">
