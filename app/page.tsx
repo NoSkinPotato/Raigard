@@ -1,4 +1,5 @@
 
+
 import "./homePage.css"
 import Image from "next/image";
 import { client } from "@/src/lib/sanity";
@@ -7,6 +8,8 @@ import Carousel from "../Components/Carousel";
 import Navbar from "../Components/NavigationBar"; 
 import { ArrowRight } from "lucide-react";
 import FadeIn from "@/Components/FadeIn";
+import { Any } from "@sanity/client/csm";
+import { urlFor } from "../src/lib/image";
 
 export const revalidate = 60;
 
@@ -35,23 +38,47 @@ export default async function Home() {
     } | order(Number asc)
   `);
 
-  const marketplaces = [
-    { name: "Tokopedia", 
-      link: "https://tk.tokopedia.com/ZSQJbGo78/", 
-      image: "/Picture/Tokopedia.png",
-      accent: "text-green-600",
-      bg: "bg-green-50"},
-    { name: "Shopee", 
-      link: "https://s.shopee.co.id/1VwYYMkszt?share_channel_code=1", 
-      image: "/Picture/Shopee.png",
-      accent: "text-orange-500",
-      bg: "bg-orange-50" },
-    { name: "Tiktok", 
-      link: "https://tk.tokopedia.com/ZSQJbGo78/", 
-      image: "/Picture/TikTok.png",
-      accent: "text-black",
-      bg: "bg-gray-50" },
-  ];
+  const marketplace = await client.fetch(`
+    *[_type == "social"]{
+      _id,
+      name,
+      link,
+      logo,
+      color
+    } | order(sequence asc)
+    `);
+
+  const appSetting = await client.fetch(`
+    *[_type == "appsSetting"]{
+      _id,
+      phoneNumber,
+      whatsAppFirstText
+    } 
+    `);
+
+    const setting = appSetting[0]
+
+    let whatsAppLink = "https://wa.me/" + setting.phoneNumber + "?text=" + setting.whatsAppFirstText;
+
+
+
+  // const marketplaces = [
+  //   { name: "Tokopedia", 
+  //     link: "https://tk.tokopedia.com/ZSQJbGo78/", 
+  //     image: "/Picture/Tokopedia.png",
+  //     accent: "text-green-600",
+  //     bg: "bg-green-50"},
+  //   { name: "Shopee", 
+  //     link: "https://s.shopee.co.id/1VwYYMkszt?share_channel_code=1", 
+  //     image: "/Picture/Shopee.png",
+  //     accent: "text-orange-600",
+  //     bg: "bg-orange-50" },
+  //   { name: "Tiktok", 
+  //     link: "https://tk.tokopedia.com/ZSQJbGo78/", 
+  //     image: "/Picture/TikTok.png",
+  //     accent: "text-gray-800",
+  //     bg: "bg-gray-50" },
+  // ];
   
   return (
     
@@ -191,19 +218,22 @@ export default async function Home() {
       </FadeIn>
       <FadeIn>
        <div className="grid md:grid-cols-3 gap-8 my-10 px-15 mx-auto w-full flex-1 max-w-[1000px]">
-          {marketplaces.map((store) => (
+          {marketplace.map((store: Any) => (
             <div
               key={store.name}
               className="overflow-hidden rounded-3xl border border-gray-200  shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
             >
               <div className="p-10 text-center">
                 <img
-                  src={store.image}
+                  src={urlFor(store.logo).width(600).url()}
                   alt={store.name}
                   className="w-24 h-24 mx-auto object-contain"
                 />
 
-                <h3 className={`mt-6 text-3xl font-semibold ${store.accent}`}>
+                <h3 className={`mt-6 text-3xl font-semibold`}
+                style={{
+                  color: (store.color.hex)
+                }}>
                   {store.name}
                 </h3>
 
@@ -216,8 +246,11 @@ export default async function Home() {
 
               <a
                 href={store.link}
-                className={`group flex items-center justify-center gap-3 py-6 text-xl font-semibold border-t ${store.accent} ${store.bg} `}
-              >
+                className={`group flex items-center justify-center gap-3 py-6 text-xl font-semibold border-t  `}
+                style={{
+                  color: (store.color.hex),
+                  background: `${store.color.hex}15`
+                }}>
                 <span>Visit Store</span>
 
                 <ArrowRight
@@ -235,7 +268,7 @@ export default async function Home() {
         </div>
         </FadeIn>
       <a
-        href="https://wa.me/6281282036413?text=Hi RAIGARD, mau order dong"
+        href={whatsAppLink}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed z-50 flex items-center

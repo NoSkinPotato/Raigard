@@ -1,5 +1,5 @@
 
-
+import { useTransition } from "@/Components/TransitionProvider";
 import Link from "next/link";
 import { client } from "@/src/lib/sanity";
 import { urlFor } from "@/src/lib/image";
@@ -7,6 +7,7 @@ import ProductGallery from "@/Components/productGallery";
 import "yet-another-react-lightbox/styles.css";
 import "@/Components/productCard.css"
 import { preload } from "react-dom";
+import ProductBackButton from "@/Components/ProductBackButton"
 
 
 export default async function ProductPage({
@@ -70,31 +71,13 @@ export default async function ProductPage({
         ],
       });
     }
-  
   return (
     
     <main className="min-h-screen bg-[#f5f4f1] text-[#1a1a18]">
       <div className="max-w-2xl mx-auto px-6 py-10">
-        <Link
-            href="/"
-            className="flex items-center gap-1.5 text-sm text-[#888] hover:text-[#1a1a18] transition-colors duration-200 cursor-pointer"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-            Back
-          </Link>
+        <ProductBackButton>
 
+        </ProductBackButton>
         <div className="flex justify-between items-start mb-2">
           <h1 className="text-[38px] font-medium leading-[1.15] tracking-[-0.02em] ProductMainName">
             {product.name}
