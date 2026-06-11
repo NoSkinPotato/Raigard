@@ -39,6 +39,13 @@ export default async function ProductPage({
       }[0]
     `, {id});
 
+      const rightGradient = `linear-gradient(
+    to right,
+    ${product.colorGradient
+      ?.map((color: any) => color.hex)
+      .join(", ")}
+  )`;
+
     const pageSlides: any[] = [];
     
     if (product.mainImage) {
@@ -79,7 +86,12 @@ export default async function ProductPage({
 
         </ProductBackButton>
         <div className="flex justify-between items-start mb-2">
-          <h1 className="text-[38px] font-medium leading-[1.15] tracking-[-0.02em] ProductMainName">
+          <h1 className="text-[38px] font-medium leading-[1.15] tracking-[-0.02em] ProductMainName"
+          style={{
+                  background: rightGradient,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}>
             {product.name}
           </h1>
           {/* <div className="text-right pt-1.5">
