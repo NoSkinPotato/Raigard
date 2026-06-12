@@ -5,8 +5,9 @@ import {
   useContext,
   useState,
   ReactNode,
+  useEffect,
 } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 type TransitionContextType = {
   navigate: (href: string) => void;
@@ -22,17 +23,22 @@ export function TransitionProvider({
 }) {
   const router = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+  if (isTransitioning) {
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 200); // fade back out
+  }
+}, [pathname]);
 
   const navigate = (href: string) => {
     setIsTransitioning(true);
 
     setTimeout(() => {
       router.push(href);
-
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 600);
-    }, 600);
+    }, 500);
   };
 
   const back = () => {
@@ -40,11 +46,7 @@ export function TransitionProvider({
 
     setTimeout(() => {
       router.back();
-
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 600);
-    }, 600);
+    }, 700);
   };
 
   return (

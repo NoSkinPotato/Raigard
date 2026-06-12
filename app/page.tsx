@@ -59,29 +59,8 @@ export default async function Home() {
     const setting = appSetting[0]
 
     let whatsAppLink = "https://wa.me/" + setting.phoneNumber + "?text=" + setting.whatsAppFirstText;
-
-
-
-  // const marketplaces = [
-  //   { name: "Tokopedia", 
-  //     link: "https://tk.tokopedia.com/ZSQJbGo78/", 
-  //     image: "/Picture/Tokopedia.png",
-  //     accent: "text-green-600",
-  //     bg: "bg-green-50"},
-  //   { name: "Shopee", 
-  //     link: "https://s.shopee.co.id/1VwYYMkszt?share_channel_code=1", 
-  //     image: "/Picture/Shopee.png",
-  //     accent: "text-orange-600",
-  //     bg: "bg-orange-50" },
-  //   { name: "Tiktok", 
-  //     link: "https://tk.tokopedia.com/ZSQJbGo78/", 
-  //     image: "/Picture/TikTok.png",
-  //     accent: "text-gray-800",
-  //     bg: "bg-gray-50" },
-  // ];
   
   return (
-    
     <div className="min-h-screen flex flex-col bg-white">
       <section id="home" className="Header" >
         <Image className="HeaderLogo"
@@ -246,6 +225,8 @@ export default async function Home() {
 
               <a
                 href={store.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`group flex items-center justify-center gap-3 py-6 text-xl font-semibold border-t  `}
                 style={{
                   color: (store.color.hex),
@@ -290,8 +271,10 @@ export default async function Home() {
         />
       </a>
       <footer className="border-t py-10 bg-black">
-        <div className="mx-auto max-w-7xl px-6 text-center text-md text-gray-500">
+        <div className="mx-auto max-w-7xl px-6 text-center text-md text-gray-500 Footer">
           © 2026 RAIGARD • LUXURY & PROTECTION FOR YOUR SLAB
+          <br />
+          Jakarta, Indonesia
         </div>
       </footer>
     </div>
