@@ -172,7 +172,8 @@ export default async function Home() {
           <br/><br/>This is only the beginning. <br/><br/>As we continue to grow, our goal remains the same: to make premium collecting more accessible and to build Indonesia’s leading ecosystem for collector accessories.
         </h3>
         <h1 className="py-5 mx-12 md:mx-20 lg:mx-60 text-[1.75rem] text-center StoryLast">
-          RAIGARD, Affordable Luxury & Protection for Your Slabs.
+          RAIGARD
+          <br/>Affordable Luxury & Protection for Your Slabs.
         </h1>
       </FadeIn>
 
@@ -272,7 +273,7 @@ export default async function Home() {
       </a>
       <footer className="border-t py-10 bg-black">
         <div className="mx-auto max-w-7xl px-6 text-center text-md text-gray-500 Footer">
-          © 2026 RAIGARD • LUXURY & PROTECTION FOR YOUR SLAB
+          © 2026 RAIGARD • AFFORDABLE LUXURY & PROTECTION FOR YOUR SLAB
           <br />
           Jakarta, Indonesia
         </div>

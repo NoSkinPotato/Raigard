@@ -40,7 +40,7 @@ export default async function ProductPage({
     `, {id});
 
       const rightGradient = `linear-gradient(
-    to right,
+    to bottom,
     ${product.colorGradient
       ?.map((color: any) => color.hex)
       .join(", ")}
@@ -80,7 +80,13 @@ export default async function ProductPage({
     }
   return (
     
-    <main className="min-h-screen bg-[#f5f4f1] text-[#1a1a18]">
+    <main className="min-h-screen bg-[#ebe8e8] text-[#1a1a18]"
+    // style={
+    //             {
+    //               background: rightGradient,
+    //             } 
+    //           }
+              >
       <div className="max-w-2xl mx-auto px-6 py-10">
         <ProductBackButton>
 
