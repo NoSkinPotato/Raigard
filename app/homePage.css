@@ -39,6 +39,10 @@ html {
   src: url("../public/Font/Alatsi-Regular.ttf") format("truetype"); 
 }
 
+.StoreName{
+  font-family: AlatsiFont;
+}
+
 @font-face {
   font-family: JosefinSansBold; 
   src: url("../public/Font/JosefinSans-Bold.ttf") format("truetype"); 

@@ -210,7 +210,7 @@ export default async function Home() {
                   className="w-24 h-24 mx-auto object-contain"
                 />
 
-                <h3 className={`mt-6 text-3xl font-semibold`}
+                <h3 className={`mt-6 text-3xl font-semibold StoreName`}
                 style={{
                   color: (store.color.hex)
                 }}>
@@ -233,7 +233,7 @@ export default async function Home() {
                   color: (store.color.hex),
                   background: `${store.color.hex}15`
                 }}>
-                <span>Visit Store</span>
+                <span className="text-xl StoreName">Visit Store</span>
 
                 <ArrowRight
                   className="
