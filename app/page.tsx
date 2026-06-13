@@ -197,13 +197,13 @@ export default async function Home() {
       </section>  
       </FadeIn>
       <FadeIn>
-       <div className="grid md:grid-cols-3 gap-8 my-10 px-15 mx-auto w-full flex-1 max-w-[1000px]">
+       <div className="grid md:grid-cols-4 gap-8 my-10 align-cet mx-15 md:mx-50 ">
           {marketplace.map((store: Any) => (
             <div
               key={store.name}
               className="overflow-hidden rounded-3xl border border-gray-200  shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
             >
-              <div className="p-10 text-center">
+              <div className="p-10 text-center justify-center">
                 <img
                   src={urlFor(store.logo).width(600).url()}
                   alt={store.name}
