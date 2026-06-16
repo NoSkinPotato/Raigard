@@ -197,20 +197,20 @@ export default async function Home() {
       </section>  
       </FadeIn>
       <FadeIn>
-       <div className="grid md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 my-10 align-center mx-15 md:mx-10 ">
+       <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 my-10 align-center mx-5 md:mx-10 sm:mx-10">
           {marketplace.map((store: Any) => (
             <div
               key={store.name}
               className="relative rounded-3xl border border-gray-200  shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
             >
-              <div className="p-10 text-center justify-center">
+              <div className="p-5 text-center justify-center w-full">
                 <img
                   src={urlFor(store.logo).width(600).url()}
                   alt={store.name}
                   className="w-24 h-24 mx-auto object-contain"
                 />
 
-                <h3 className={`mt-6 text-3xl font-semibold StoreName`}
+                <h3 className={`mt-6 text-[25px] font-semibold StoreName`}
                 style={{
                   color: (store.color.hex)
                 }}>
@@ -233,7 +233,7 @@ export default async function Home() {
                   color: (store.color.hex),
                   background: `${store.color.hex}15`
                 }}>
-                <span className="text-xl StoreName">Visit Store</span>
+                <span className="text-lg StoreName">Visit Store</span>
 
                 <ArrowRight
                   className="
