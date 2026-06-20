@@ -20,7 +20,8 @@ export default function Navbar() {
     });
   },
   {
-    threshold: 15,
+    rootMargin: "-15% 0px -15% 0px",
+    threshold: 0,
   }
 );
 
@@ -46,7 +47,7 @@ export default function Navbar() {
     { id: "catalog", label: "CATALOG" },
     { id: "story", label: "STORY" },
     { id: "marketplace", label: "MARKETPLACE" },
-    // { id: "review", label: "REVIEW" },
+    { id: "reviews", label: "REVIEW" },
   ];
 
   return (
