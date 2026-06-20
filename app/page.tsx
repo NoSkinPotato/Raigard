@@ -10,6 +10,7 @@ import { ArrowRight } from "lucide-react";
 import FadeIn from "@/Components/FadeIn";
 import { Any } from "@sanity/client/csm";
 import { urlFor } from "../src/lib/image";
+import ReviewsCarousel from "@/Components/ReviewsCarousel";
 
 export const revalidate = 60;
 
@@ -47,6 +48,15 @@ export default async function Home() {
       color
     } | order(sequence asc)
     `);
+
+  const reviews = await client.fetch(`
+    *[_type == "Review"]{
+      _id,
+      Username,
+      RatingValue,
+      ReviewNote
+    } `
+  );
 
   const appSetting = await client.fetch(`
     *[_type == "appsSetting"]{
@@ -242,6 +252,29 @@ export default async function Home() {
             </div>
           ))}
         </div>
+        </FadeIn>
+        <FadeIn>
+          <section id="reviews" className="bg-white px-6 py-10 md:px-12">
+            <div className="mx-auto max-w-6xl">
+              <div className="mx-auto mb-12 max-w-2xl rounded-[40px] border-black px-4 py-4 text-center md:border-2 md:px-12 md:py-6">
+                <h2 className="text-xl font-bold text-black md:text-2xl">Reviews</h2>
+
+                <div className="my-3 flex justify-center gap-1.5">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <span key={i} className="h-1.5 w-1.5 rounded-full bg-black" />
+                  ))}
+                </div>
+                
+                <hr className="mb-3 border-black/20" />
+                
+                <p className="text-sm font-bold uppercase tracking-wide text-black md:text-base">
+                  What Collectors Are Saying
+                </p>
+              </div>
+                
+              <ReviewsCarousel reviews={reviews} />
+            </div>
+          </section>
         </FadeIn>
       <a
         href={whatsAppLink}
