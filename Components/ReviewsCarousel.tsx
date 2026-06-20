@@ -40,9 +40,9 @@ export default function ReviewsCarousel({ reviews }: any) {
   return (
     <div>
       <div className="hidden md:block">
-        <div className="grid grid-cols-4 gap-6 justify-center">
+        <div className="flex flex-wrap justify-center gap-6">
           {visibleDesktop.map((review : any) => (
-            <div key={review._id}  className="flex h-full min-h-[200px] flex-col justify-between rounded-2xl bg-black p-5">
+            <div key={review._id}  className="flex h-full min-h-[350px] flex-col justify-between rounded-2xl bg-black p-8" style={{gridTemplateColumns: `repeat(${Math.min(visibleDesktop.length, 4)}, minmax(0, 280px))`,}}>
               <div>
                 <StarRating rating={review.RatingValue} />
                 <p className="mt-3 line-clamp-6 text-xs leading-relaxed text-neutral-300">{review.ReviewNote}</p>
