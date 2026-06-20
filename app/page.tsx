@@ -70,7 +70,7 @@ export default async function Home() {
           height={20}
         />
       </section>
-      <p className="text-center text-sm Tagline1">
+      <p className="text-center Tagline1">
           AFFORDABLE LUXURY & PROTECTION FOR YOUR SLAB
         </p>
       <Navbar></Navbar>
@@ -171,7 +171,7 @@ export default async function Home() {
           <br/><br/>Today, RAIGARD offers 24 distinctive colorways designed to help collectors express their style while keeping their slabs protected.
           <br/><br/>This is only the beginning. <br/><br/>As we continue to grow, our goal remains the same: to make premium collecting more accessible and to build Indonesia’s leading ecosystem for collector accessories.
         </h3>
-        <h1 className="py-5 mx-12 md:mx-20 lg:mx-60 text-[1.75rem] text-center StoryLast">
+        <h1 className="py-5 mx-12 md:mx-20 lg:mx-60 text-center StoryLast">
           RAIGARD
           <br/>Affordable Luxury & Protection for Your Slabs.
         </h1>
@@ -210,18 +210,12 @@ export default async function Home() {
                   className="w-24 h-24 mx-auto object-contain"
                 />
 
-                <h3 className={`mt-6 text-[25px] font-semibold StoreName`}
+                <h3 className={`mt-6 font-semibold StoreName`}
                 style={{
                   color: (store.color.hex)
                 }}>
                   {store.name}
                 </h3>
-
-                {/* <div className="flex items-center justify-center gap-2 mt-4">
-                  <div className="w-6 h-px bg-black" />
-                  <div className="w-2 h-2 rounded-full bg-[#B89B5E]" />
-                  <div className="w-6 h-px bg-[#B89B5E]" />
-                </div> */}
               </div>
 
               <a
@@ -233,7 +227,7 @@ export default async function Home() {
                   color: (store.color.hex),
                   background: `${store.color.hex}15`
                 }}>
-                <span className="text-lg StoreName">Visit Store</span>
+                <h3 className="StoreName">Visit Store</h3>
 
                 <ArrowRight
                   className="

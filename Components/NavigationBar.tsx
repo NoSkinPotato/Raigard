@@ -20,8 +20,7 @@ export default function Navbar() {
     });
   },
   {
-    rootMargin: "-15% 0px -15% 0px",
-    threshold: 0,
+    threshold: 15,
   }
 );
 
