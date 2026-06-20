@@ -16,13 +16,14 @@ export default async function ReviewsSection() {
           <h2 className="text-xl font-bold text-black md:text-2xl mb-4">Reviews</h2>
 
           {/* New line and dots structure */}
-          <div className="flex items-center justify-center gap-3 mt-4 pr-15 pl-15">
-            <div className="h-1 rounded-[5px] w-full bg-black" />
-            <div className="w-5 h-2.5 rounded-full bg-black" />
-            <div className="w-5 h-2.5 rounded-full bg-black" />
-            <div className="w-5 h-2.5 rounded-full bg-black" />
-            <div className="w-5 h-2.5 rounded-full bg-black" />
-            <div className="h-1 rounded-[5px] w-full bg-black" />
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <div className="h-0.5 flex-1 bg-black rounded-full" />
+            <div className="flex gap-2">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="w-2.5 h-2.5 rounded-full bg-black" />
+              ))}
+            </div>
+            <div className="h-0.5 flex-1 bg-black rounded-full" />
           </div>
 
           <p className="mt-4 text-sm font-bold uppercase tracking-wide text-black md:text-base">
