@@ -254,20 +254,23 @@ export default async function Home() {
         </div>
         </FadeIn>
         <FadeIn>
-          <section id="reviews" className="bg-white px-6 py-10 md:px-12">
+          <section id="reviews" className="rounded-[30px] mx-5 mt-5 text-center bg-white ring-5 ring-black ring-inset CatalogSection">
             <div className="mx-auto max-w-6xl">
               <div className="mx-auto mb-12 max-w-2xl rounded-[40px] border-black px-4 py-4 text-center md:border-2 md:px-12 md:py-6">
-                <h2 className="text-xl font-bold text-black md:text-2xl">Reviews</h2>
+                <h2 className="text-4xl md:text-5xl font-bold text-black">Reviews</h2>
 
-                <div className="my-3 flex justify-center gap-1.5">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <span key={i} className="h-1.5 w-1.5 rounded-full bg-black" />
-                  ))}
+                {/* New line and dots structure */}
+                <div className="flex items-center justify-center gap-2 mt-4">
+                  <div className="h-0.5 flex-1 bg-black rounded-full" />
+                  <div className="flex gap-2">
+                    {[...Array(4)].map((_, i) => (
+                      <div key={i} className="w-2.5 h-2.5 rounded-full bg-black" />
+                    ))}
+                  </div>
+                  <div className="h-0.5 flex-1 bg-black rounded-full" />
                 </div>
                 
-                <hr className="mb-3 border-black/20" />
-                
-                <p className="text-sm font-bold uppercase tracking-wide text-black md:text-base">
+                <p className="pt-1 text-black text-lg mt-2">
                   What Collectors Are Saying
                 </p>
               </div>
