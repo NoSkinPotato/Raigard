@@ -253,7 +253,7 @@ export default async function Home() {
           ))}
         </div>
         </FadeIn>
-        {/* <FadeIn>
+        <FadeIn>
           <section id="reviews" className="bg-white px-6 py-10 md:px-12">
             <div className="mx-auto max-w-6xl">
               <div className="mx-auto mb-12 max-w-2xl rounded-[40px] border-black px-4 py-4 text-center md:border-2 md:px-12 md:py-6">
@@ -275,7 +275,7 @@ export default async function Home() {
               <ReviewsCarousel reviews={reviews} />
             </div>
           </section>
-        </FadeIn> */}
+        </FadeIn>
       <a
         href={whatsAppLink}
         target="_blank"
