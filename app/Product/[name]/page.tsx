@@ -13,12 +13,12 @@ import ProductBackButton from "@/Components/ProductBackButton"
 export default async function ProductPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ name: string }>;
 }) {
-  const {id} = await params;
+  const {name} = await params;
 
   const product = await client.fetch(`
-      *[_type == "product" && _id == $id]{
+      *[_type == "product" && name == $name]{
         _id,
         name,
         price,
@@ -37,7 +37,7 @@ export default async function ProductPage({
           }
         }
       }[0]
-    `, {id});
+    `, {name});
 
       const rightGradient = `linear-gradient(
     to bottom,

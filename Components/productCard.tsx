@@ -34,7 +34,7 @@ export default function ProductCard({ product }: any) {
       justify-center ">
         <FadeIn>
         <div className="p-[4px] rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" >
-          <div onClick={() => navigate(`/productPage/${product._id}`)}>
+          <div onClick={() => navigate(`/Product/${product.name}`)}>
            <div className="bg-[#F2F2F2] rounded-[10px] shadow-lg p-0.75 productBackground">
             <div className="absolute inset-1 rounded-[10px] productOverlap"
               style={
