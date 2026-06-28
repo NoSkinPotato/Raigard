@@ -1,139 +1,164 @@
 'use client'
 
-import { useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import StarRating from './StarRating'
-
-const GAP_PX = 16 // px, matches gap-4 below — keep these in sync
-
+import { urlFor } from "../src/lib/image"
+import { div } from 'framer-motion/client'
 
 export default function ReviewsCarousel({ reviews }: any) {
-  const trackRef = useRef<HTMLDivElement>(null)
-  const [activeIndex, setActiveIndex] = useState<number>(0)
-  const [page, setPage] = useState<number>(0) // desktop: which group of 4 is showing
+  const [index, setIndex] = useState(0)
+  const [isDesktop, setIsDesktop] = useState(false)
+  const [paused, setPaused] = useState(false)
 
-  const scrollToIndex = useCallback((index: number) => {
-    const track = trackRef.current
-    if (!track) return
-    const card = track.children[index] as HTMLElement | undefined
-    if (!card) return
-    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' })
+  useEffect(() => {
+    const update = () => setIsDesktop(window.innerWidth >= 768)
+
+    update()
+    window.addEventListener('resize', update)
+
+    return () => window.removeEventListener('resize', update)
   }, [])
 
-  const handleScroll = useCallback(() => {
-    const track = trackRef.current
-    if (!track) return
-    const card = track.children[0] as HTMLElement | undefined
-    if (!card) return
-    const cardWidth = card.offsetWidth + GAP_PX
-    const index = Math.round(track.scrollLeft / cardWidth)
-    setActiveIndex(Math.min(Math.max(index, 0), reviews.length - 1))
-  }, [reviews.length])
+  const cardsPerPage = isDesktop ? 3 : 1
+  const pageCount = Math.ceil(reviews.length / cardsPerPage)
 
-  if (!reviews?.length) return null
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
 
-  const pageCount = Math.ceil(reviews.length / 4)
-  const visibleDesktop = reviews.slice(page * 4, page * 4 + 4)
+  useEffect(() => {
+    if (paused) return
 
-  const handlePrev = () => scrollToIndex(Math.max(activeIndex - 1, 0))
-  const handleNext = () => scrollToIndex(Math.min(activeIndex + 1, reviews.length - 1))
+    const timer = setInterval(() => {
+      setIndex(i => (i + 1) % pageCount)
+    }, 10000)
+
+    return () => clearInterval(timer)
+  }, [paused, pageCount])
+
+  const next = () => {
+    setIndex(i => (i + 1) % pageCount)
+  }
+
+  const prev = () => {
+    setIndex(i => (i - 1 + pageCount) % pageCount)
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  } 
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX
+  } 
+
+  const handleTouchEnd = () => {
+    const distance = touchStartX.current - touchEndX.current  
+
+    // Ignore tiny movements
+    if (Math.abs(distance) < 50) return 
+
+    if (distance > 0) {
+      next() // swipe left
+    } else {
+      prev() // swipe right
+    }
+  }
 
   return (
-    <div>
-      <div className="hidden md:block">
-        <div className="grid grid-cols-4 gap-6 justify-center">
-          {visibleDesktop.map((review : any) => (
-            <div key={review._id}  className="flex h-full min-h-[200px] flex-col justify-between rounded-2xl bg-black p-5">
-              <div>
-                <StarRating rating={review.RatingValue} />
-                <p className="mt-3 line-clamp-6 text-xs leading-relaxed text-neutral-300">{review.ReviewNote}</p>
-              </div>
-
-              <p className="mt-4 text-xs text-neutral-400">- {review.Username}</p>
-            </div>
-          ))}
-        </div>
-
-        {pageCount > 1 && (
-          <div className="mt-8 flex items-center justify-center gap-6">
-            <button
-              type="button"
-              onClick={() => setPage((p) => Math.max(p - 1, 0))}
-              disabled={page === 0}
-              aria-label="Previous reviews"
-              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-black bg-white text-black transition-opacity hover:opacity-70 disabled:opacity-20 disabled:hover:opacity-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              ‹
-            </button>
-            <div className="flex gap-1.5">
-              {Array.from({ length: pageCount }).map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setPage(i)}
-                  aria-label={`Go to review page ${i + 1}`}
-                  className={`h-1.5 rounded-full transition-all ${
-                    i === page ? 'w-6 bg-black' : 'w-1.5 bg-black/20'
-                  }`}
-                />
-              ))}
-            </div>
-            <button
-              type="button"
-              onClick={() => setPage((p) => Math.min(p + 1, pageCount - 1))}
-              disabled={page === pageCount - 1}
-              aria-label="Next reviews"
-              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-black bg-white text-black transition-opacity hover:opacity-70 disabled:opacity-20 disabled:hover:opacity-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              ›
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* Mobile: native swipe via scroll-snap, single card per view, overlapping nav buttons */}
-      <div className="md:hidden">
-        <div className="relative">
+    <div
+      className="relative overflow-hidden px-10"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div
+        className="flex transition-transform duration-500 ease-in-out gap-5"
+        style={{
+          transform: `translateX(-${index * 100}%)`
+        }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {Array.from({ length: pageCount }).map((_, page) => (
           <div
-            ref={trackRef}
-            onScroll={handleScroll}
-            className="motion-safe:scroll-smooth flex snap-x snap-mandatory gap-4 overflow-x-auto px-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            key={page}
+            className="w-full shrink-0 flex gap-5"
           >
-            {reviews.map((review : any) => (
-              <div key={review._id} className="w-[85%] shrink-0 snap-center">
-                <div className="flex h-full min-h-[200px] flex-col justify-between rounded-2xl bg-black p-5">
+            {reviews
+              .slice(
+                page * cardsPerPage,
+                page * cardsPerPage + cardsPerPage
+              )
+              .map((review: any) => (
+                <div
+                  key={review._id}
+                  className={`${
+                    isDesktop ? 'w-1/3' : 'w-full'
+                  } 
+                  rounded-2xl bg-black p-5 flex flex-col justify-between min-h-[220px]`}
+                >
                   <div>
                     <StarRating rating={review.RatingValue} />
-                    <p className="mt-3 line-clamp-6 text-xs leading-relaxed text-neutral-300">{review.ReviewNote}</p>
+
+                    <div className="flex items-start gap-6">
+                      <div className="flex-1">
+                        <p className="mt-3 text-xs text-neutral-300 line-clamp-6">
+                          {review.ReviewNote}
+                        </p>
+                      </div>   
+                      
+                      {review.ReviewImage && (
+                        <img
+                          src={urlFor(review.ReviewImage).width(300).url()}
+                          alt={review.Username}
+                          width={100}
+                          height={100}
+                          className="w-48 h-48 shrink-0 rounded-lg object-cover"
+                        />
+                      )
+                      }
+                    </div>
                   </div>
 
-                  <p className="mt-4 text-xs text-neutral-400">- {review.Username}</p>
+                  <p className="mt-5 text-xs text-neutral-400">
+                    - {review.Username}
+                  </p>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
+        ))}
+      </div>
 
-          {activeIndex > 0 && (
-            <button
-              type="button"
-              onClick={handlePrev}
-              aria-label="Previous review"
-              className="absolute left-0 top-1/2 z-10 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-black bg-white text-black shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              ‹
-            </button>
-          )}
+        
+      <div className='mt-8 mb-5 flex items-center justify-center gap-6 mx-10'>    
+        <button
+          onClick={prev}
+          className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-black bg-white text-black transition-opacity hover:opacity-70 disabled:opacity-20 disabled:hover:opacity-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        >
+          ‹
+        </button>
 
-          {activeIndex < reviews.length - 1 && (
+        <div className="flex justify-center gap-2 py-auto">
+          {Array.from({ length: pageCount }).map((_, i) => (
             <button
-              type="button"
-              onClick={handleNext}
-              aria-label="Next review"
-              className="absolute right-0 top-1/2 z-10 flex h-9 w-9 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-black bg-white text-black shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              ›
-            </button>
-          )}
+              key={i}
+              onClick={() => setIndex(i)}
+              className={`rounded-full transition-all ${
+                index === i
+                  ? 'w-6 h-2 bg-black'
+                  : 'w-2 h-2 bg-gray-300'
+              }`}
+            />
+          ))}
         </div>
+        
+        <button
+          onClick={next}
+          className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-black bg-white text-black transition-opacity hover:opacity-70 disabled:opacity-20 disabled:hover:opacity-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        >
+          ›
+        </button>
+
       </div>
     </div>
   )

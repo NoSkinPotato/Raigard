@@ -3,7 +3,6 @@ import { useTransition } from "@/Components/TransitionProvider";
 
 import { urlFor } from "../src/lib/image";
 import "./productCard.css"
-import Link from "next/link";
 import FadeIn from "@/Components/FadeIn";
 
 export default function ProductCard({ product }: any) {
