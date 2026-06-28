@@ -264,6 +264,8 @@ export default async function Home() {
                 <div className="h-1 rounded-[5px] w-full bg-black" />
                 <div className="w-5 h-2.5 rounded-full bg-black" />
                 <div className="w-5 h-2.5 rounded-full bg-black" />
+                <div className="w-5 h-2.5 rounded-full bg-black" />
+                <div className="w-5 h-2.5 rounded-full bg-black" />
                 <div className="h-1 rounded-[5px] w-full bg-black" />
               </div>
               <p className="pt-1 text-black text-lg mt-2">
