@@ -84,7 +84,13 @@ html {
   font-size: clamp(1.2rem, 1.5vw, 1rem); 
 }
 
+
 .Footer{
   line-height: 1.75rem;
 }
 
+.ColorFitting{
+  font-family: AlatsiFont;
+  font-size: clamp(1rem, 1.5vw, 1.2rem); 
+  color: black;
+}

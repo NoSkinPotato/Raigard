@@ -8,16 +8,16 @@ import Carousel from "../Components/Carousel";
 import Navbar from "../Components/NavigationBar"; 
 import { ArrowRight } from "lucide-react";
 import FadeIn from "@/Components/FadeIn";
+import ColorFitButton from "@/Components/ColorFitButton";
 import { Any } from "@sanity/client/csm";
 import { urlFor } from "../src/lib/image";
 import ReviewsCarousel from "@/Components/ReviewsCarousel";
+import { useTransition } from "@/Components/TransitionProvider";
 
 export const revalidate = 60;
 
 
 export default async function Home() {
-
-  
 
     const products = await client.fetch(`
     *[_type == "product"]{
@@ -85,13 +85,14 @@ export default async function Home() {
           AFFORDABLE LUXURY & PROTECTION FOR YOUR SLAB
         </p>
       <Navbar></Navbar>
-      <div>
-        
-        {/* <p className="text-center TaglineDescr">
-          Premium quality slab covers with seamless colors <br></br> and lasting protection for every surface
-        </p> */}
-      </div>
-      
+      {/* <div className="flex justify-center">
+        <button className="w-fit py-5 px-4 rounded-[20px] ColorFitting">
+          Color Fitting
+        </button>
+      </div> */}
+
+      <ColorFitButton></ColorFitButton>
+
       <Carousel carousels={carousels} />
       <section id="catalog" className="rounded-[30px] mx-5 mt-5 text-center bg-black CatalogSection">
          <h2 className="text-4xl md:text-5xl pt-5 font-bold text-white">
