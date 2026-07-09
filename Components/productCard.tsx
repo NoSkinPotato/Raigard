@@ -34,29 +34,33 @@ export default function ProductCard({ product }: any) {
         <FadeIn>
         <div className="p-[4px] rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" >
           <div onClick={() => navigate(`/Product/${product.name}`)}>
-           <div className="bg-[#F2F2F2] rounded-[10px] shadow-lg p-0.75 productBackground">
-            <div className="absolute inset-1 rounded-[10px] productOverlap"
+           <div className="bg-[#F2F2F2] items-center p-2 rounded-[10px] shadow-lg p-0.75 productBackground">
+            <div className="absolute inset-1 rounded-[10px] object-contain productOverlap"
               style={
                 {
                   background: bottomGradient,
                 } 
-              }> </div>
+              }> 
+            </div>
+            
+            <div className="absolute bg-white w-[85%]
+            h-[90%] rounded-[10%]"/>
             <img
                 src={urlFor(product.image).width(600).url()}
                 alt={product.name}
                 width={600}
                 height={800}
-                className="relative h-full w-45 "
-              />
-              <h3 className="ProductName" 
-                style={{
-                  background: rightGradient,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-                >
-                  {product.name}
-              </h3>
+                className="relative h-full w-45"/>
+            
+            <h3 className="ProductName" 
+              style={{
+                background: rightGradient,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+              >
+                {product.name}
+            </h3>
           </div>
           </div>
         </div>

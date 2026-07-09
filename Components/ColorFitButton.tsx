@@ -1,7 +1,7 @@
 "use client";
 import { useTransition } from "@/Components/TransitionProvider";
 
-export default function ColorFitButton(){
+export default function ColorFitButton({ colors }: any){
 
  const { navigate } = useTransition();
 
@@ -13,13 +13,14 @@ export default function ColorFitButton(){
             className="
               flex items-center gap-3 px-5 py-3 rounded-[20px] bg-gray-100
               hover:bg-gray-200 transition cursor-pointer w-fit whitespace-nowrap ">
-            <div className="flex items-center justify-center rounded-full border border-black px-3 py-2">
-              <img
-                src="/Picture/BlackBrush.png"
+            <img
+                src="/Picture/CaseLogo.png"
                 alt="ColorFit"
-                className="w-6 h-6 object-contain"
+                className="w-7 h-7 object-contain"
               />
-            </div>
+            {/* <div className="flex items-center justify-center rounded-full border border-black px-3 py-2">
+              
+            </div> */}
             <h1 className="text-sm md:text-base font-medium  ColorFitting">
               COLOR FITTING
             </h1>

@@ -109,7 +109,7 @@ export default async function ProductPage({
           {product.description}
         </p>
 
-        <div className="relative w-full aspect-[4/3] rounded-2xl shadow-lg overflow-hidden bg-[#e2dfd8] mb-5 flex items-center justify-center">
+        <div className="relative w-full aspect-[4/4] rounded-2xl shadow-lg overflow-hidden bg-[#e2dfd8] mb-5 flex items-center justify-center">
           <div className="flex flex-col items-center gap-2.5 text-[#b0aca5]">
             <ProductGallery
               slides={pageSlides}

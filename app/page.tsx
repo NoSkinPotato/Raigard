@@ -16,7 +16,6 @@ import { useTransition } from "@/Components/TransitionProvider";
 
 export const revalidate = 60;
 
-
 export default async function Home() {
 
     const products = await client.fetch(`
@@ -54,8 +53,7 @@ export default async function Home() {
       _id,
       Username,
       RatingValue,
-      ReviewNote,
-      ReviewImage
+      ReviewNote
     } `
   );
 
@@ -85,11 +83,6 @@ export default async function Home() {
           AFFORDABLE LUXURY & PROTECTION FOR YOUR SLAB
         </p>
       <Navbar></Navbar>
-      {/* <div className="flex justify-center">
-        <button className="w-fit py-5 px-4 rounded-[20px] ColorFitting">
-          Color Fitting
-        </button>
-      </div> */}
 
       <ColorFitButton></ColorFitButton>
 
@@ -255,29 +248,29 @@ export default async function Home() {
           ))}
         </div>
         </FadeIn>
-        <FadeIn>
-          <section id="reviews" className="rounded-[30px] mx-5 mt-5 text-center bg-white ring-5 ring-black ring-inset CatalogSection">
-            <div className="py-7">
-              <h2 className="text-4xl md:text-5xl font-bold text-black">
-                REVIEWS
-              </h2>
-              <div className="flex items-center justify-center gap-3 mt-4 pr-15 pl-15">
-                <div className="h-1 rounded-[5px] w-full bg-black" />
-                <div className="w-5 h-2.5 rounded-full bg-black" />
-                <div className="w-5 h-2.5 rounded-full bg-black" />
-                <div className="w-5 h-2.5 rounded-full bg-black" />
-                <div className="w-5 h-2.5 rounded-full bg-black" />
-                <div className="h-1 rounded-[5px] w-full bg-black" />
+        {/* <FadeIn>
+          <section id="reviews" className="bg-white px-6 py-10 md:px-12">
+            <div className="mx-auto max-w-6xl">
+              <div className="mx-auto mb-12 max-w-2xl rounded-[40px] border-black px-4 py-4 text-center md:border-2 md:px-12 md:py-6">
+                <h2 className="text-xl font-bold text-black md:text-2xl">Reviews</h2>
+
+                <div className="my-3 flex justify-center gap-1.5">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <span key={i} className="h-1.5 w-1.5 rounded-full bg-black" />
+                  ))}
+                </div>
+                
+                <hr className="mb-3 border-black/20" />
+                
+                <p className="text-sm font-bold uppercase tracking-wide text-black md:text-base">
+                  What Collectors Are Saying
+                </p>
               </div>
-              <p className="pt-1 text-black text-lg mt-2">
-                What Collectors Are Saying
-              </p>
-            </div>
-          </section> 
-          <div className="mx-auto mt-5">
+                
               <ReviewsCarousel reviews={reviews} />
-          </div>
-        </FadeIn> 
+            </div>
+          </section>
+        </FadeIn> */}
       <a
         href={whatsAppLink}
         target="_blank"
