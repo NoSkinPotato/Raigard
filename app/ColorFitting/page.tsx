@@ -1,4 +1,5 @@
 import { client } from "@/src/lib/sanity";
+
 import ColorFitClient from "@/Components/ColorFit/ColorFitClient";
 
 export default async function ColorFit() {
