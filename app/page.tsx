@@ -227,7 +227,7 @@ export default async function Home() {
                 href={store.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex items-center justify-center gap-3 py-6 text-xl font-semibold border-t  `}
+                className={`group flex items-center rounded-bl-3xl rounded-br-3xl justify-center gap-3 py-6 text-xl font-semibold border-t  `}
                 style={{
                   color: (store.color.hex),
                   background: `${store.color.hex}15`
