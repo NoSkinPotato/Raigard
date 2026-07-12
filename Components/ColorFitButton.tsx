@@ -6,18 +6,18 @@ export default function ColorFitButton({ colors }: any){
  const { navigate } = useTransition();
 
   return (
-    <div className="flex items-center mx-10 lg:mx-50 mt-4 mb-7" onClick={() => navigate("/ColorFitting")}>
+    <div className="flex items-center mx-10 lg:mx-50 mt-4 mb-4" onClick={() => navigate("/ColorFitting")}>
         <div className="flex-1 h-px bg-black" />
         <div className="mx-4">
           <div
             className="
               flex items-center gap-3 px-5 py-3 rounded-[20px] bg-gray-100
               hover:bg-gray-200 transition cursor-pointer w-fit whitespace-nowrap ">
-            <img
-                src="/Picture/CaseLogo.png"
+            {/* <img
+                src="/Picture/SlabLogo.png"
                 alt="ColorFit"
-                className="w-7 h-7 object-contain"
-              />
+                className="w-auto h-10 object-contain"
+              /> */}
             {/* <div className="flex items-center justify-center rounded-full border border-black px-3 py-2">
               
             </div> */}

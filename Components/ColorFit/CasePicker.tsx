@@ -22,14 +22,36 @@ interface UploadColorProp {
 }
 
 export default function CasePicker({setCaseImage, cases} : UploadColorProps) {
+  
+  return (
+    <>
+      {/* Desktop Version */}
+      <div className="hidden lg:block">
+        <CasePickerDesktop setCaseImage={setCaseImage} cases={cases}/>
+      </div>
+
+      {/* Mobile Version */}
+      <div className="block lg:hidden">
+        <div className="w-full h-45">
+
+        </div>
+        <div className="fixed bottom-0 left-0 w-full z-100">
+          <CasePickerMobile setCaseImage={setCaseImage} cases={cases}/>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function CasePickerDesktop({setCaseImage, cases} : UploadColorProps){
 
   const [clickName, setClickName] = useState<string>(cases[0].name);
   const [hoverName, setHoverName] = useState<string>(cases[0].name);
 
   let [useClick, setUseClick] = useState<boolean>(true);
-  
+
   return (
-    <div className=" p-6">
+    <div className="pb-6 px-6">
       <div className="mb-6 flex items-center gap-3">
 
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-white">
@@ -37,7 +59,7 @@ export default function CasePicker({setCaseImage, cases} : UploadColorProps) {
         </div>
 
         <h2 className="font-semibold uppercase tracking-[0.2em] text-sm text-black">
-          Pick a Case
+          Pick a Guard
         </h2>
 
       </div>
@@ -59,7 +81,53 @@ export default function CasePicker({setCaseImage, cases} : UploadColorProps) {
       </div>
       
     </div>
-  );
+  )
+}
+
+function CasePickerMobile({setCaseImage, cases} : UploadColorProps){
+
+  const [clickName, setClickName] = useState<string>(cases[0].name);
+  const [hoverName, setHoverName] = useState<string>(cases[0].name);
+
+  let [useClick, setUseClick] = useState<boolean>(true);
+
+  return (
+    <>
+      <div className="mb-6 flex items-center gap-3">
+
+        {/* <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-white">
+          2
+        </div>
+
+        <h2 className="font-semibold uppercase tracking-[0.2em] text-sm text-black">
+          Pick a Guard
+        </h2> */}
+
+      </div>
+
+      <div className="bg-white p-6 shadow-sm border">
+        <h2 className="font-bold text-mb text-black pb-2">
+          {useClick ? clickName : hoverName}
+        </h2>
+
+        <div className="overflow-x-auto">
+          <div className="flex w-max gap-2">
+            {cases.map((colorCase: ColorChoice) => (
+              <div key={colorCase._id} className="flex-shrink-0">
+                <CaseColor
+                  setCaseImage={setCaseImage}
+                  setClickName={setClickName}
+                  setHoverName={setHoverName}
+                  setUseClick={setUseClick}
+                  case1={colorCase}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
 function CaseColor ({setCaseImage, setClickName, setHoverName, setUseClick, case1} : UploadColorProp){
@@ -90,7 +158,8 @@ function CaseColor ({setCaseImage, setClickName, setHoverName, setUseClick, case
       onMouseEnter={MouseEnter}
       onMouseLeave={MouseLeave}
       className="
-        h-14
+        h-15
+        w-15
         rounded-xl
         shadow
         transition

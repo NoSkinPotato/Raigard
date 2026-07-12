@@ -32,7 +32,7 @@ export default function ProductCard({ product }: any) {
     lg:w-[calc(25%-2rem)]
       justify-center ">
         <FadeIn>
-        <div className="p-[4px] rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" >
+        <div className="p-[4px] rounded-xl transition-all duration-300 hover:-translate-y-2" >
           <div className="cursor-pointer" onClick={() => navigate(`/Product/${product.name}`)}>
            <div className="bg-[#F2F2F2] items-center p-2 rounded-[10px] shadow-lg p-0.75 productBackground">
             <div className="absolute inset-1 rounded-[10px] object-contain productOverlap"

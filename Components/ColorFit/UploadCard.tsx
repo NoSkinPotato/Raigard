@@ -11,6 +11,7 @@ export default function UploadCard({
   setCardImage,
 }: UploadCardProps) {
   
+  const MAX_FILE_SIZE = 10 * 1024 * 1024;
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [dragging, setDragging] = useState(false);
@@ -20,6 +21,11 @@ export default function UploadCard({
   };
 
   const handleFile = (file: File) => {
+    if (file.size > MAX_FILE_SIZE) {
+      alert("Image must be smaller than 10 MB.");
+      return;
+    }
+
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -49,7 +55,7 @@ export default function UploadCard({
         </div>
 
         <h2 className="text-sm font-semibold uppercase tracking-[0.25em] text-black">
-          Upload Card
+          Upload Your Slab
         </h2>
       </div>
 
