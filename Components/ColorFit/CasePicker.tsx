@@ -93,24 +93,12 @@ function CasePickerMobile({setCaseImage, cases} : UploadColorProps){
 
   return (
     <>
-      <div className="mb-6 flex items-center gap-3">
-
-        {/* <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-white">
-          2
-        </div>
-
-        <h2 className="font-semibold uppercase tracking-[0.2em] text-sm text-black">
-          Pick a Guard
-        </h2> */}
-
-      </div>
-
-      <div className="bg-white p-6 shadow-sm border">
+      <div className="bg-white p-5 shadow-sm border">
         <h2 className="font-bold text-mb text-black pb-2">
           {useClick ? clickName : hoverName}
         </h2>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto py-2">
           <div className="flex w-max gap-2">
             {cases.map((colorCase: ColorChoice) => (
               <div key={colorCase._id} className="flex-shrink-0">
@@ -159,7 +147,7 @@ function CaseColor ({setCaseImage, setClickName, setHoverName, setUseClick, case
       onMouseLeave={MouseLeave}
       className="
         h-15
-        w-15
+        w-14
         rounded-xl
         shadow
         transition

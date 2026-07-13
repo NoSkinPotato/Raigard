@@ -47,7 +47,7 @@ export default function Navbar() {
     { id: "catalog", label: "CATALOG" },
     { id: "story", label: "STORY" },
     { id: "marketplace", label: "MARKETPLACE" },
-    { id: "reviews", label: "REVIEW" },
+    // { id: "reviews", label: "REVIEW" },
   ];
 
   return (

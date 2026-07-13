@@ -11,7 +11,7 @@ export default function ColorFitButton({ colors }: any){
         <div className="mx-4">
           <div
             className="
-              flex items-center gap-3 px-5 py-3 rounded-[20px] bg-gray-100
+              flex items-center gap-3 px-5 py-3 rounded-[20px] bg-gray-100 border-2 border-black
               hover:bg-gray-200 transition cursor-pointer w-fit whitespace-nowrap ">
             {/* <img
                 src="/Picture/SlabLogo.png"

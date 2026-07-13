@@ -101,6 +101,7 @@ export default function UploadCard({
           border-2
           border-dashed
           transition
+          bg-white
           ${
             dragging
               ? "border-blue-500 bg-blue-50"

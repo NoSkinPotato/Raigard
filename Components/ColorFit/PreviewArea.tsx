@@ -54,14 +54,14 @@ export default function PreviewCard({
     <>
     {/* Desktop Version */}
     <div className="hidden lg:block">
-      <div className="relative h-[830px] overflow-hidden rounded-[36px] bg-[#CBBDAA]">
+      <div className="relative h-[830px] shadow-sm overflow-hidden rounded-[36px] bg-white">
         <MainPreview/>
       </div>
     </div>
 
     {/* Mobile Version */}
     <div className="block lg:hidden">
-      <div className="relative h-[750px] overflow-hidden rounded-[36px] bg-[#CBBDAA]">
+      <div className="relative h-[750px] shadow-sm overflow-hidden rounded-[36px] bg-white">
         <MainPreview/>
       </div>
     </div>
@@ -150,11 +150,11 @@ export default function PreviewCard({
                   ${
                     dragging
                       ? "border-blue-500"
-                      : "border-white hover:border-black"
+                      : "border-black hover:border-gray-400"
                   }`}>
                 
                 <h2 className="absolute inset-0 justify-center items-center object-cover 
-                  text-white text-xl flex ">
+                  text-black text-xl flex ">
                   Upload Your Scan Here
                 </h2>
               </div>
