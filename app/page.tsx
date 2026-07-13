@@ -8,16 +8,15 @@ import Carousel from "../Components/Carousel";
 import Navbar from "../Components/NavigationBar"; 
 import { ArrowRight } from "lucide-react";
 import FadeIn from "@/Components/FadeIn";
+import ColorFitButton from "@/Components/ColorFitButton";
 import { Any } from "@sanity/client/csm";
 import { urlFor } from "../src/lib/image";
 import ReviewsCarousel from "@/Components/ReviewsCarousel";
+import { useTransition } from "@/Components/TransitionProvider";
 
 export const revalidate = 60;
 
-
 export default async function Home() {
-
-  
 
     const products = await client.fetch(`
     *[_type == "product"]{
@@ -84,13 +83,9 @@ export default async function Home() {
           AFFORDABLE LUXURY & PROTECTION FOR YOUR SLAB
         </p>
       <Navbar></Navbar>
-      <div>
-        
-        {/* <p className="text-center TaglineDescr">
-          Premium quality slab covers with seamless colors <br></br> and lasting protection for every surface
-        </p> */}
-      </div>
-      
+
+      <ColorFitButton></ColorFitButton>
+
       <Carousel carousels={carousels} />
       <section id="catalog" className="rounded-[30px] mx-5 mt-5 text-center bg-black CatalogSection">
          <h2 className="text-4xl md:text-5xl pt-5 font-bold text-white">
@@ -232,7 +227,7 @@ export default async function Home() {
                 href={store.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex items-center justify-center gap-3 py-6 text-xl font-semibold border-t  `}
+                className={`group flex items-center rounded-bl-3xl rounded-br-3xl justify-center gap-3 py-6 text-xl font-semibold border-t  `}
                 style={{
                   color: (store.color.hex),
                   background: `${store.color.hex}15`

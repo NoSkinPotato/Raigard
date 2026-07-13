@@ -210,6 +210,7 @@ export default function Carousel({
           shadow-lg
           hover:scale-110
           transition
+          cursor-pointer
         "
       >
         <svg
@@ -236,7 +237,7 @@ export default function Carousel({
               resetInterval();
             }}
             className={`
-              transition-all duration-300 rounded-full
+              transition-all duration-300 rounded-full cursor-pointer
               ${
                 index === current
                   ? "w-6 h-2 bg-black"
