@@ -4,15 +4,17 @@ interface PreviewCardProps {
   cardImage: string | Blob | undefined;
   caseImage: string | Blob | undefined;
   setCardImage: React.Dispatch<React.SetStateAction<string | Blob | undefined>>;
+  flip: boolean | undefined;
 }
 
 import { useRef } from "react";
 import { useState } from "react";
 
 export default function PreviewCard({
-  cardImage, caseImage, setCardImage
+  cardImage, caseImage, setCardImage, flip
 }: PreviewCardProps) {
 
+  console.log("flip = " + flip)
     const MAX_FILE_SIZE = 10 * 1024 * 1024;
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -168,7 +170,8 @@ export default function PreviewCard({
               alt=""
               width={1000}
               height={600}
-              className="
+              className={
+                `
                 absolute
                 w-auto
                 h-[75%]
@@ -177,7 +180,11 @@ export default function PreviewCard({
                 overflow-hidden
                 z-10
                 max-w-[500px]
-              "
+                ${
+                  flip && "rotate-180" 
+                }
+                `
+              }
             />
           )}      
 
@@ -185,4 +192,127 @@ export default function PreviewCard({
       </>
     );
   }
+<<<<<<< Updated upstream
+=======
+  function MainPreviewMobile(){
+    return (
+      <>
+        {/* <div
+          className="absolute
+            left-[-200px]
+            top-[-150px]
+            h-[700px]
+            w-[700px]
+            rounded-full
+            bg-white/30
+            blur-3xl
+          "
+        /> */}
+
+        <div className="flex h-full w-full items-center justify-center overflow-hidden">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+
+          <button
+            className={`
+              absolute
+              ${
+                cardImage ? "w-[270px] h-[70%]  overflow-hidden object-cover"
+                : "w-[240px] h-[62%] overflow-hidden object-cover"
+              }
+              max-w-[450px]
+              overflow-hidden
+              rounded-md
+              z-10
+              object-contain
+              flex
+              items-center
+              justify-center
+              cursor-pointer
+              `}
+
+              onClick={handleClick}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragging(true);
+              }}
+            
+              onDragLeave={() => setDragging(false)}
+            
+              onDrop={(e) => {
+                e.preventDefault();
+                setDragging(false);
+              
+                const file = e.dataTransfer.files?.[0];       
+              
+                if (!file) return;        
+              
+                if (!file.type.startsWith("image/")) return;        
+              
+                handleFile(file);
+              }}
+          >
+            {cardImage ? (
+              <img
+                src={cardImage}
+                className="h-full w-full object-cover pointer-events-none"
+              />
+            ) : (
+              <div className={`relative h-full w-full object-cover 
+                  flex-col
+                  items-center
+                  justify-center
+                  rounded-[15px]
+                  border-5
+                  border-dashed
+                  transition
+                  ${
+                    dragging
+                      ? "border-blue-500"
+                      : "border-black hover:border-gray-400"
+                  }`}>
+                
+                <h2 className="absolute inset-0 justify-center items-center object-cover 
+                  text-black text-xl flex ">
+                  Upload Your Scan Here
+                </h2>
+              </div>
+            )}
+          </button>    
+
+          {/* Case */}
+          {caseImage && (
+            <img
+              src={caseImage}
+              alt=""
+              width={1000}
+              height={600}
+              className={
+                `
+                absolute
+                w-auto
+                h-[75.6%]
+                object-contain
+                pointer-events-none
+                overflow-hidden
+                z-10
+                max-w-[500px]
+                ${
+                  flip && "rotate-180" 
+                }
+                `
+              }
+            />
+          )}      
+
+        </div>
+      </>
+    );
+  }
+>>>>>>> Stashed changes
 }

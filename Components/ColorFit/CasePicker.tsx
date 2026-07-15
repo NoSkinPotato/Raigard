@@ -11,23 +11,25 @@ interface ColorChoice {
 interface UploadColorProps {
   setCaseImage: React.Dispatch<React.SetStateAction<string | Blob | undefined>>;
   cases: ColorChoice[]
+  clickName: string | undefined;
+  setClickName: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 interface UploadColorProp {
   setCaseImage: React.Dispatch<React.SetStateAction<string | Blob | undefined>>;
-  setClickName: React.Dispatch<React.SetStateAction<string>>;
-  setHoverName: React.Dispatch<React.SetStateAction<string>>;
+  setClickName: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setHoverName: React.Dispatch<React.SetStateAction<string | undefined>>;
   setUseClick: React.Dispatch<React.SetStateAction<boolean>>;
   case1: ColorChoice;
 }
 
-export default function CasePicker({setCaseImage, cases} : UploadColorProps) {
+export default function CasePicker({setCaseImage, cases, clickName, setClickName} : UploadColorProps) {
   
   return (
     <>
       {/* Desktop Version */}
       <div className="hidden lg:block">
-        <CasePickerDesktop setCaseImage={setCaseImage} cases={cases}/>
+        <CasePickerDesktop setCaseImage={setCaseImage} cases={cases} clickName={clickName} setClickName={setClickName}/>
       </div>
 
       {/* Mobile Version */}
@@ -36,17 +38,16 @@ export default function CasePicker({setCaseImage, cases} : UploadColorProps) {
 
         </div>
         <div className="fixed bottom-0 left-0 w-full z-100">
-          <CasePickerMobile setCaseImage={setCaseImage} cases={cases}/>
+          <CasePickerMobile setCaseImage={setCaseImage} cases={cases} clickName={clickName} setClickName={setClickName}/>
         </div>
       </div>
     </>
   );
 }
 
-function CasePickerDesktop({setCaseImage, cases} : UploadColorProps){
+function CasePickerDesktop({setCaseImage, cases, clickName, setClickName} : UploadColorProps){
 
-  const [clickName, setClickName] = useState<string>(cases[0].name);
-  const [hoverName, setHoverName] = useState<string>(cases[0].name);
+  const [hoverName, setHoverName] = useState<string | undefined>(cases[0].name);
 
   let [useClick, setUseClick] = useState<boolean>(true);
 
@@ -84,10 +85,9 @@ function CasePickerDesktop({setCaseImage, cases} : UploadColorProps){
   )
 }
 
-function CasePickerMobile({setCaseImage, cases} : UploadColorProps){
+function CasePickerMobile({setCaseImage, cases, clickName, setClickName} : UploadColorProps){
 
-  const [clickName, setClickName] = useState<string>(cases[0].name);
-  const [hoverName, setHoverName] = useState<string>(cases[0].name);
+  const [hoverName, setHoverName] = useState<string | undefined>(cases[0].name);
 
   let [useClick, setUseClick] = useState<boolean>(true);
 
