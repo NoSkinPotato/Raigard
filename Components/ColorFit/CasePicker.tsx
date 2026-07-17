@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import "@/Components/ColorFit/ColorFit.css"
 
 interface ColorChoice {
   _id: string;
@@ -55,18 +56,18 @@ function CasePickerDesktop({setCaseImage, cases, clickName, setClickName} : Uplo
     <div className="pb-6 px-6">
       <div className="mb-6 flex items-center gap-3">
 
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-white">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-white AlatsiText">
           2
         </div>
 
-        <h2 className="font-semibold uppercase tracking-[0.2em] text-sm text-black">
+        <h2 className="font-semibold uppercase tracking-[0.2em] text-sm text-black AlatsiText">
           Pick a Guard
         </h2>
 
       </div>
 
       <div className="rounded-3xl bg-white p-6 shadow-sm border">
-        <h2 className="font-bold text-mb text-black pb-2">
+        <h2 className="font-bold text-lg text-black pb-2 AlatsiText">
           {useClick ? clickName : hoverName}
         </h2>
         <div className="grid grid-cols-5 gap-3">
@@ -94,7 +95,7 @@ function CasePickerMobile({setCaseImage, cases, clickName, setClickName} : Uploa
   return (
     <>
       <div className="bg-white p-5 shadow-sm border">
-        <h2 className="font-bold text-mb text-black pb-2">
+        <h2 className="font-bold text-lg text-black pb-2 AlatsiText">
           {useClick ? clickName : hoverName}
         </h2>
 

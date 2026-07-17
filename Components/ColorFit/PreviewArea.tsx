@@ -9,12 +9,12 @@ interface PreviewCardProps {
 
 import { useRef } from "react";
 import { useState } from "react";
+import "@/Components/ColorFit/ColorFit.css"
 
 export default function PreviewCard({
   cardImage, caseImage, setCardImage, flip
 }: PreviewCardProps) {
 
-  console.log("flip = " + flip)
     const MAX_FILE_SIZE = 10 * 1024 * 1024;
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -57,20 +57,20 @@ export default function PreviewCard({
     {/* Desktop Version */}
     <div className="hidden lg:block">
       <div className="relative h-[830px] shadow-sm overflow-hidden rounded-[36px] bg-white">
-        <MainPreview/>
+        <MainPreviewDesktop/>
       </div>
     </div>
 
     {/* Mobile Version */}
     <div className="block lg:hidden">
-      <div className="relative h-[750px] shadow-sm overflow-hidden rounded-[36px] bg-white">
-        <MainPreview/>
+      <div className="relative h-[550px] shadow-sm overflow-hidden rounded-[36px] bg-white">
+        <MainPreviewMobile/>
       </div>
     </div>
     </>
   );
 
-  function MainPreview(){
+  function MainPreviewDesktop(){
     return (
       <>
         {/* <div
@@ -100,7 +100,7 @@ export default function PreviewCard({
             className={`
               absolute
               ${
-                cardImage ? "w-auto h-[70%] max-w-[450px]"
+                cardImage ? "w-[350px] h-[70%]"
                 : "w-[30%] h-[62%] min-w-[280px]"
               }
               max-w-[450px]
@@ -156,7 +156,7 @@ export default function PreviewCard({
                   }`}>
                 
                 <h2 className="absolute inset-0 justify-center items-center object-cover 
-                  text-black text-xl flex ">
+                  text-black text-xl flex AlatsiText">
                   Upload Your Scan Here
                 </h2>
               </div>
@@ -192,8 +192,6 @@ export default function PreviewCard({
       </>
     );
   }
-<<<<<<< Updated upstream
-=======
   function MainPreviewMobile(){
     return (
       <>
@@ -209,7 +207,9 @@ export default function PreviewCard({
           "
         /> */}
 
-        <div className="flex h-full w-full items-center justify-center overflow-hidden">
+        <div className="flex h-full items-center justify-center overflow-hidden">
+
+          {/* Hidden Input */}
           <input
             ref={fileInputRef}
             type="file"
@@ -222,8 +222,8 @@ export default function PreviewCard({
             className={`
               absolute
               ${
-                cardImage ? "w-[270px] h-[70%]  overflow-hidden object-cover"
-                : "w-[240px] h-[62%] overflow-hidden object-cover"
+                cardImage ? "w-[250px] h-[75%] max-w-[300px]"
+                : "w-[30%] h-[68%] min-w-[220px]"
               }
               max-w-[450px]
               overflow-hidden
@@ -278,7 +278,7 @@ export default function PreviewCard({
                   }`}>
                 
                 <h2 className="absolute inset-0 justify-center items-center object-cover 
-                  text-black text-xl flex ">
+                  text-black text-xl flex AlatsiText">
                   Upload Your Scan Here
                 </h2>
               </div>
@@ -296,7 +296,7 @@ export default function PreviewCard({
                 `
                 absolute
                 w-auto
-                h-[75.6%]
+                h-[80%]
                 object-contain
                 pointer-events-none
                 overflow-hidden
@@ -314,5 +314,4 @@ export default function PreviewCard({
       </>
     );
   }
->>>>>>> Stashed changes
 }

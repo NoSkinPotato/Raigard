@@ -20,18 +20,10 @@ export default function ColorFitClient({
 }){
   const [cardImage, setCardImage] = useState<string | Blob | undefined>();
   const [caseImage, setCaseImage] = useState<string | Blob | undefined>();
-<<<<<<< Updated upstream
-
-  const preloadImage = (url: string) => {
-    const img = new Image();
-    img.src = url;
-  };
   
-=======
   const [flip, setFlip] = useState<boolean | undefined>();
   const [clickName, setClickName] = useState<string | undefined>(colors[0].name);
 
->>>>>>> Stashed changes
   const { back } = useTransition();
 
   function Flip(): void {
@@ -67,7 +59,7 @@ export default function ColorFitClient({
         <div className="min-h-screen bg-[#F7F4EF] hidden lg:block">
   ...     <div className="mx-auto flex max-w-[1500px] gap-8 px-8 pt-4">
             <aside className="w-[400px] ">
-              <img className="HeaderLogo mx-4 cursor-pointer"
+              <img className="mx-auto cursor-pointer"
                 src="/Picture/Raigard.png"
                 alt="Store Logo"
                 width={150}

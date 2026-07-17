@@ -1,5 +1,6 @@
 "use client";
 
+import "@/Components/ColorFit/ColorFit.css"
 import { useRef } from "react";
 import { useState } from "react";
 
@@ -50,11 +51,11 @@ export default function UploadCard({
   return (
     <div className="p-6 ">
       <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-sm text-white">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-sm text-white AlatsiText">
           1
         </div>
 
-        <h2 className="text-sm font-semibold uppercase tracking-[0.25em] text-black">
+        <h2 className="text-sm font-semibold uppercase tracking-[0.25em] text-black AlatsiText">
           Upload Your Slab
         </h2>
       </div>
@@ -109,9 +110,9 @@ export default function UploadCard({
           }
         `}
       >
-        <p className="mt-5 font-bold text-black">Drop a Card Scan Here</p>
+        <p className="mt-5 font-bold text-black AlatsiText">Drop a Card Scan Here</p>
 
-        <span className="text-neutral-500">
+        <span className="text-neutral-500 AlatsiText">
           or browse
         </span>
       </button>

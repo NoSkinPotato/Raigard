@@ -114,14 +114,22 @@ export default async function ProductPage({
             <ProductGallery
               slides={pageSlides}
               index={0}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover flex items-center justify-center overflow-hidden"
             >
             {product.mainImage && (
-              <img
-                src={urlFor(product.mainImage).url()}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
+              <>
+                <img
+                  src={urlFor(product.mainImage).url()}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+                <img className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30"
+                  src="/Picture/Raigard.png"
+                  alt="Store Logo"
+                  width={250}
+                  height={100}
+                />
+              </>
             )}
             </ProductGallery>
           </div>

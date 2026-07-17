@@ -1,5 +1,9 @@
 'use client'
 
+
+
+
+import "@/Components/ColorFit/ColorFit.css"
 import { useEffect, useRef, useState } from "react";
 
 interface ToolbarProps {
@@ -123,6 +127,7 @@ function ToolbarButton({
         h-16
         w-14
 
+        pt-1
         rounded-xl
         transition-all
         duration-200
@@ -148,7 +153,7 @@ function ToolbarButton({
         />
       </div>
       
-      <h2 className="text-black mt-1">
+      <h2 className="text-black mt-1 AlatsiText">
         {label}
       </h2>
     </button>

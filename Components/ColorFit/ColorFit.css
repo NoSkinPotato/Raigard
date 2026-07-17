@@ -1,0 +1,10 @@
+
+
+.AlatsiText{
+  font-family: AlatsiFont;
+}
+
+@font-face {
+  font-family: AlatsiFont; 
+  src: url("@/public/Font/Alatsi-Regular.ttf") format("truetype"); 
+}
