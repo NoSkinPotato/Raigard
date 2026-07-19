@@ -94,7 +94,7 @@ function ToolbarSlider({
   return(
     <>
       <ToolbarButton
-        icon="/Picture/FlipIcon.svg"
+        icon="/Picture/FlipIcon.png"
         label="Flip"
         onClick={onFlip}
       />
