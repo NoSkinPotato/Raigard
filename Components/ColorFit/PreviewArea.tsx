@@ -1,24 +1,27 @@
-import { div } from "framer-motion/client";
 
 interface PreviewCardProps {
   cardImage: string | Blob | undefined;
   caseImage: string | Blob | undefined;
   setCardImage: React.Dispatch<React.SetStateAction<string | Blob | undefined>>;
   flip: boolean | undefined;
+  caseName: string;
 }
 
 import { useRef } from "react";
 import { useState } from "react";
 import "@/Components/ColorFit/ColorFit.css"
+import { useTransition } from "@/Components/TransitionProvider";
 
 export default function PreviewCard({
-  cardImage, caseImage, setCardImage, flip
+  cardImage, caseImage, setCardImage, flip, caseName
 }: PreviewCardProps) {
 
     const MAX_FILE_SIZE = 10 * 1024 * 1024;
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const [dragging, setDragging] = useState(false);
+
+    const { navigate } = useTransition();
   
     const handleClick = () => {
       fileInputRef.current?.click();
@@ -63,9 +66,12 @@ export default function PreviewCard({
 
     {/* Mobile Version */}
     <div className="block lg:hidden">
-      <div className="relative h-[550px] shadow-sm overflow-hidden rounded-[36px] bg-white">
+      <div className="relative h-[550px] shadow-sm rounded-[36px] bg-white">
         <MainPreviewMobile/>
       </div>
+        <button onClick={() => navigate(`/Product/${caseName}`)} className="AlatsiText GuardDetail w-full mt-4 bg-black text-[25px] py-3 px-5 rounded-[20px] cursor-pointer">
+            Guard Details
+        </button>
     </div>
     </>
   );
@@ -101,7 +107,7 @@ export default function PreviewCard({
               absolute
               ${
                 cardImage ? "w-[350px] h-[70%]"
-                : "w-[30%] h-[62%] min-w-[280px]"
+                : "w-[280px] h-[62%] min-w-[300px]"
               }
               max-w-[450px]
               overflow-hidden
@@ -188,6 +194,9 @@ export default function PreviewCard({
             />
           )}      
 
+          <button onClick={() => navigate(`/Product/${caseName}`)} className="AlatsiText GuardDetail absolute bottom-5 right-5 bg-black text-[25px] py-3 px-5 rounded-[20px] cursor-pointer">
+            Guard Details
+          </button>
         </div>
       </>
     );
@@ -223,7 +232,7 @@ export default function PreviewCard({
               absolute
               ${
                 cardImage ? "w-[250px] h-[75%] max-w-[300px]"
-                : "w-[30%] h-[68%] min-w-[220px]"
+                : "w-[180px] h-[68%] min-w-[220px]"
               }
               max-w-[450px]
               overflow-hidden
