@@ -6,6 +6,7 @@ import PreviewCard from "@/Components/ColorFit/PreviewArea";
 import ProductBackButton from "@/Components/ProductBackButton"
 import { useTransition } from "@/Components/TransitionProvider";
 import { main } from "framer-motion/client";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 interface CaseColors {
   _id: string;
