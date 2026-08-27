@@ -5,6 +5,8 @@ import CasePicker from "@/Components/ColorFit/CasePicker";
 import PreviewCard from "@/Components/ColorFit/PreviewArea";
 import Toolbar from "@/Components/ColorFit/Toolbar";
 import { useTransition } from "@/Components/TransitionProvider";
+import { main } from "framer-motion/client";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 interface CaseColors {
   _id: string;

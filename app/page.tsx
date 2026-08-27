@@ -271,7 +271,7 @@ export default async function Home() {
             </div>
           </section>
         </FadeIn> */}
-      <a
+      {/* <a
         href={whatsAppLink}
         target="_blank"
         rel="noopener noreferrer"
@@ -292,7 +292,7 @@ export default async function Home() {
           w-full
           h-full"
         />
-      </a>
+      </a> */}
       <footer className="border-t py-10 bg-black">
         <div className="mx-auto max-w-7xl px-6 text-center text-md text-gray-500 Footer">
           © 2026 RAIGARD • AFFORDABLE LUXURY & PROTECTION FOR YOUR SLAB

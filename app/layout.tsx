@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RAIGARD",
+  title: "RAIGARD: Affordable Luxury & Protection For Your Slab",
   description: "Product By PokeRaiku",
 };
 
