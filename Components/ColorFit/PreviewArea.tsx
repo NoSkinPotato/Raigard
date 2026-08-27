@@ -69,9 +69,9 @@ export default function PreviewCard({
       <div className="relative h-[550px] shadow-sm rounded-[36px] bg-white">
         <MainPreviewMobile/>
       </div>
-        <button onClick={() => navigate(`/Product/${caseName}`)} className="AlatsiText GuardDetail w-full mt-4 bg-black text-[25px] py-3 px-5 rounded-[20px] cursor-pointer">
+        {/* <button onClick={() => navigate(`/Product/${caseName}`)} className="AlatsiText GuardDetail w-full mt-4 bg-black text-[25px] py-3 px-5 rounded-[20px] cursor-pointer">
             Guard Details
-        </button>
+        </button> */}
     </div>
     </>
   );
@@ -194,9 +194,9 @@ export default function PreviewCard({
             />
           )}      
 
-          <button onClick={() => navigate(`/Product/${caseName}`)} className="AlatsiText GuardDetail absolute bottom-5 right-5 bg-black text-[25px] py-3 px-5 rounded-[20px] cursor-pointer">
+          {/* <button onClick={() => navigate(`/Product/${caseName}`)} className="AlatsiText GuardDetail absolute bottom-5 right-5 bg-black text-[25px] py-3 px-5 rounded-[20px] cursor-pointer">
             Guard Details
-          </button>
+          </button> */}
         </div>
       </>
     );
