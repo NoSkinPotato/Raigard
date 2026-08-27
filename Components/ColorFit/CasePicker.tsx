@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import "@/Components/ColorFit/ColorFit.css"
 
 interface ColorChoice {
   _id: string;
@@ -11,23 +12,28 @@ interface ColorChoice {
 interface UploadColorProps {
   setCaseImage: React.Dispatch<React.SetStateAction<string | Blob | undefined>>;
   cases: ColorChoice[]
+  clickName: string | undefined;
+  setClickName: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setColorIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface UploadColorProp {
   setCaseImage: React.Dispatch<React.SetStateAction<string | Blob | undefined>>;
-  setClickName: React.Dispatch<React.SetStateAction<string>>;
-  setHoverName: React.Dispatch<React.SetStateAction<string>>;
+  setClickName: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setHoverName: React.Dispatch<React.SetStateAction<string | undefined>>;
   setUseClick: React.Dispatch<React.SetStateAction<boolean>>;
+  setColorIndex: React.Dispatch<React.SetStateAction<number>>;
   case1: ColorChoice;
+  index: number;
 }
 
-export default function CasePicker({setCaseImage, cases} : UploadColorProps) {
+export default function CasePicker({setCaseImage, cases, clickName, setClickName, setColorIndex} : UploadColorProps) {
   
   return (
     <>
       {/* Desktop Version */}
       <div className="hidden lg:block">
-        <CasePickerDesktop setCaseImage={setCaseImage} cases={cases}/>
+        <CasePickerDesktop setCaseImage={setCaseImage} cases={cases} clickName={clickName} setClickName={setClickName} setColorIndex={setColorIndex}/>
       </div>
 
       {/* Mobile Version */}
@@ -36,17 +42,16 @@ export default function CasePicker({setCaseImage, cases} : UploadColorProps) {
 
         </div>
         <div className="fixed bottom-0 left-0 w-full z-100">
-          <CasePickerMobile setCaseImage={setCaseImage} cases={cases}/>
+          <CasePickerMobile setCaseImage={setCaseImage} cases={cases} clickName={clickName} setClickName={setClickName} setColorIndex={setColorIndex}/>
         </div>
       </div>
     </>
   );
 }
 
-function CasePickerDesktop({setCaseImage, cases} : UploadColorProps){
+function CasePickerDesktop({setCaseImage, cases, clickName, setClickName, setColorIndex} : UploadColorProps){
 
-  const [clickName, setClickName] = useState<string>(cases[0].name);
-  const [hoverName, setHoverName] = useState<string>(cases[0].name);
+  const [hoverName, setHoverName] = useState<string | undefined>(cases[0].name);
 
   let [useClick, setUseClick] = useState<boolean>(true);
 
@@ -54,28 +59,30 @@ function CasePickerDesktop({setCaseImage, cases} : UploadColorProps){
     <div className="pb-6 px-6">
       <div className="mb-6 flex items-center gap-3">
 
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-white">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-white AlatsiText">
           2
         </div>
 
-        <h2 className="font-semibold uppercase tracking-[0.2em] text-sm text-black">
+        <h2 className="font-semibold uppercase tracking-[0.2em] text-sm text-black AlatsiText">
           Pick a Guard
         </h2>
 
       </div>
 
       <div className="rounded-3xl bg-white p-6 shadow-sm border">
-        <h2 className="font-bold text-mb text-black pb-2">
+        <h2 className="font-bold text-lg text-black pb-2 AlatsiText">
           {useClick ? clickName : hoverName}
         </h2>
         <div className="grid grid-cols-5 gap-3">
-            {cases.map((colorCase: ColorChoice) => (
+            {cases.map((colorCase: ColorChoice, index: number) => (
               <CaseColor key={colorCase._id} 
               setCaseImage={setCaseImage} 
               setClickName={setClickName}
               setHoverName={setHoverName}
               setUseClick={setUseClick}
-              case1={colorCase} />
+              setColorIndex={setColorIndex}
+              case1={colorCase}
+              index={index} />
             ))}
           </div>
       </div>
@@ -84,30 +91,31 @@ function CasePickerDesktop({setCaseImage, cases} : UploadColorProps){
   )
 }
 
-function CasePickerMobile({setCaseImage, cases} : UploadColorProps){
+function CasePickerMobile({setCaseImage, cases, clickName, setClickName, setColorIndex} : UploadColorProps){
 
-  const [clickName, setClickName] = useState<string>(cases[0].name);
-  const [hoverName, setHoverName] = useState<string>(cases[0].name);
+  const [hoverName, setHoverName] = useState<string | undefined>(cases[0].name);
 
   let [useClick, setUseClick] = useState<boolean>(true);
 
   return (
     <>
       <div className="bg-white p-5 shadow-sm border">
-        <h2 className="font-bold text-mb text-black pb-2">
+        <h2 className="font-bold text-lg text-black pb-2 AlatsiText">
           {useClick ? clickName : hoverName}
         </h2>
 
         <div className="overflow-x-auto py-2">
           <div className="flex w-max gap-2">
-            {cases.map((colorCase: ColorChoice) => (
+            {cases.map((colorCase: ColorChoice, index: number) => (
               <div key={colorCase._id} className="flex-shrink-0">
                 <CaseColor
                   setCaseImage={setCaseImage}
                   setClickName={setClickName}
                   setHoverName={setHoverName}
                   setUseClick={setUseClick}
+                  setColorIndex={setColorIndex}
                   case1={colorCase}
+                  index={index}
                 />
               </div>
             ))}
@@ -118,11 +126,12 @@ function CasePickerMobile({setCaseImage, cases} : UploadColorProps){
   )
 }
 
-function CaseColor ({setCaseImage, setClickName, setHoverName, setUseClick, case1} : UploadColorProp){
+function CaseColor ({setCaseImage, setClickName, setHoverName, setUseClick, case1, setColorIndex, index} : UploadColorProp){
 
   const ClickHandler = () => {
     setCaseImage(case1.imageUrl);
     setClickName(case1.name);
+    setColorIndex(index);
   };
 
   const MouseEnter = () => {

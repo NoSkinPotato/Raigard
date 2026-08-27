@@ -1,22 +1,27 @@
-import { div } from "framer-motion/client";
 
 interface PreviewCardProps {
   cardImage: string | Blob | undefined;
   caseImage: string | Blob | undefined;
   setCardImage: React.Dispatch<React.SetStateAction<string | Blob | undefined>>;
+  flip: boolean | undefined;
+  caseName: string;
 }
 
 import { useRef } from "react";
 import { useState } from "react";
+import "@/Components/ColorFit/ColorFit.css"
+import { useTransition } from "@/Components/TransitionProvider";
 
 export default function PreviewCard({
-  cardImage, caseImage, setCardImage
+  cardImage, caseImage, setCardImage, flip, caseName
 }: PreviewCardProps) {
 
     const MAX_FILE_SIZE = 10 * 1024 * 1024;
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const [dragging, setDragging] = useState(false);
+
+    const { navigate } = useTransition();
   
     const handleClick = () => {
       fileInputRef.current?.click();
@@ -61,7 +66,7 @@ export default function PreviewCard({
 
     {/* Mobile Version */}
     <div className="block lg:hidden">
-      <div className="relative h-[650px] shadow-sm overflow-hidden rounded-[36px] bg-white">
+      <div className="relative h-[550px] shadow-sm rounded-[36px] bg-white">
         <MainPreviewMobile/>
       </div>
     </div>
@@ -98,8 +103,8 @@ export default function PreviewCard({
             className={`
               absolute
               ${
-                cardImage ? "w-auto h-[70%] max-w-[450px]"
-                : "w-[30%] h-[62%] min-w-[280px]"
+                cardImage ? "w-[350px] h-[70%]"
+                : "w-[280px] h-[62%] min-w-[300px]"
               }
               max-w-[450px]
               overflow-hidden
@@ -154,7 +159,7 @@ export default function PreviewCard({
                   }`}>
                 
                 <h2 className="absolute inset-0 justify-center items-center object-cover 
-                  text-black text-xl flex ">
+                  text-black text-xl flex AlatsiText">
                   Upload Your Scan Here
                 </h2>
               </div>
@@ -168,7 +173,8 @@ export default function PreviewCard({
               alt=""
               width={1000}
               height={600}
-              className="
+              className={
+                `
                 absolute
                 w-auto
                 h-[75%]
@@ -177,10 +183,13 @@ export default function PreviewCard({
                 overflow-hidden
                 z-10
                 max-w-[500px]
-              "
+                ${
+                  flip && "rotate-180" 
+                }
+                `
+              }
             />
           )}      
-
         </div>
       </>
     );
@@ -200,7 +209,9 @@ export default function PreviewCard({
           "
         /> */}
 
-        <div className="flex h-full w-full items-center justify-center overflow-hidden">
+        <div className="flex h-full items-center justify-center overflow-hidden">
+
+          {/* Hidden Input */}
           <input
             ref={fileInputRef}
             type="file"
@@ -213,8 +224,8 @@ export default function PreviewCard({
             className={`
               absolute
               ${
-                cardImage ? "w-[270px] h-[70%]  overflow-hidden object-cover"
-                : "w-[240px] h-[62%] overflow-hidden object-cover"
+                cardImage ? "w-[250px] h-[75%] max-w-[300px]"
+                : "w-[180px] h-[68%] min-w-[220px]"
               }
               max-w-[450px]
               overflow-hidden
@@ -269,7 +280,7 @@ export default function PreviewCard({
                   }`}>
                 
                 <h2 className="absolute inset-0 justify-center items-center object-cover 
-                  text-black text-xl flex ">
+                  text-black text-xl flex AlatsiText">
                   Upload Your Scan Here
                 </h2>
               </div>
@@ -283,16 +294,21 @@ export default function PreviewCard({
               alt=""
               width={1000}
               height={600}
-              className="
+              className={
+                `
                 absolute
                 w-auto
-                h-[75.6%]
+                h-[80%]
                 object-contain
                 pointer-events-none
                 overflow-hidden
                 z-10
                 max-w-[500px]
-              "
+                ${
+                  flip && "rotate-180" 
+                }
+                `
+              }
             />
           )}      
 

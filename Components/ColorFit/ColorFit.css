@@ -1,0 +1,25 @@
+
+
+.AlatsiText{
+  font-family: AlatsiFont;
+}
+
+@font-face {
+  font-family: AlatsiFont; 
+  src: url("@/public/Font/Alatsi-Regular.ttf") format("truetype"); 
+}
+
+.GuardDetail{
+  background-color: black;
+  color: white;
+  border-color: black;
+  border-width: 5px;
+    transition: all 0.3s ease;
+}
+
+.GuardDetail:hover{
+  background-color: white;
+  color: black;
+  border-color: black;
+  border-width: 5px;
+}

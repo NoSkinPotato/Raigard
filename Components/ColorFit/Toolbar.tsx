@@ -1,54 +1,84 @@
+'use client'
+
+
+
+
+import "@/Components/ColorFit/ColorFit.css"
+import { useEffect, useRef, useState } from "react";
+
 interface ToolbarProps {
-  onRotate: () => void;
-  onRandomize: () => void;
+  onFlip: () => void;
+  onShuffle: () => void;
   onClear: () => void;
 }
 
 export default function Toolbar({
-  onRotate,
-  onRandomize,
-  onClear,
+  onFlip, onShuffle, onClear
 }: ToolbarProps) {
+
+  const [activeSection, setActiveSection] = useState("home");
+  const [isSticky, setIsSticky] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-15% 0px -15% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsSticky(!entry.isIntersecting);
+    });
+
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div
-      className="
-        absolute
-        right-6
-        top-1/2
-        -translate-y-1/2
+    <>
+      <div className="hidden lg:block">
+        <div
+          className="
+            absolute right-6 top-1/2 -translate-y-1/2
+            flex flex-col gap-8
+            rounded-2xl bg-white/90  p-3
+            shadow-xl backdrop-blur-md border border-neutral-200
+          ">
+          <ToolbarSlider onFlip={onFlip} onShuffle={onShuffle} onClear={onClear}/>
+        </div>
+      </div>
 
-        flex
-        flex-col
-        gap-3
-
-        rounded-2xl
-        bg-white/90
-        p-3
-
-        shadow-xl
-        backdrop-blur-md
-        border
-        border-neutral-200
-      "
-    >
-      <ToolbarButton
-        icon="/icons/rotate.svg"
-        label="Rotate"
-        onClick={onRotate}
-      />
-
-      <ToolbarButton
-        icon="/icons/randomize.svg"
-        label="Randomize"
-        onClick={onRandomize}
-      />
-
-      <ToolbarButton
-        icon="/icons/clear.svg"
-        label="Clear"
-        onClick={onClear}
-      />
-    </div>
+      {/* Mobile Version */}
+      <div className="block lg:hidden sticky top-0 z-100">
+        <div ref={sentinelRef} className="h-px" />
+        <nav
+          className="mt-5 mx-5 py-2 flex gap-10 justify-center
+            rounded-2xl bg-white/60 border border-neutral-200
+          ">
+          <ToolbarSlider onFlip={onFlip} onShuffle={onShuffle} onClear={onClear}/>
+        </nav>
+      </div>
+    </>
   );
 }
 
@@ -56,6 +86,32 @@ interface ToolbarButtonProps {
   icon: string;
   label: string;
   onClick: () => void;
+}
+
+function ToolbarSlider({
+  onFlip, onShuffle, onClear
+}: ToolbarProps){
+  return(
+    <>
+      <ToolbarButton
+        icon="/Picture/FlipIcon.png"
+        label="Flip"
+        onClick={onFlip}
+      />
+
+      <ToolbarButton
+        icon="/Picture/ShuffleIcon.png"
+        label="Shuffle"
+        onClick={onShuffle}
+      />
+
+      <ToolbarButton
+        icon="/Picture/ClearIcon.jpg"
+        label="Clear"
+        onClick={onClear}
+      /> 
+    </>
+  )
 }
 
 function ToolbarButton({
@@ -68,17 +124,11 @@ function ToolbarButton({
       onClick={onClick}
       title={label}
       className="
-        group
-
-        flex
-        h-14
+        h-16
         w-14
 
-        items-center
-        justify-center
-
+        pt-1
         rounded-xl
-
         transition-all
         duration-200
 
@@ -88,17 +138,25 @@ function ToolbarButton({
         active:scale-95
       "
     >
-      <img
-        src={icon}
-        alt={label}
-        className="
-          h-6
-          w-6
-
-          transition
-          group-hover:scale-110
-        "
-      />
+      <div className="flex h-[50%] w-full items-center justify-center">
+        <img
+         src={icon}
+         alt={label}
+         className="
+           h-full
+           w-[60%]
+           object-contain
+           items-center justify-center
+           transition
+           group-hover:scale-110
+         "
+        />
+      </div>
+      
+      <h2 className="text-black mt-1 AlatsiText">
+        {label}
+      </h2>
     </button>
+    
   );
 }

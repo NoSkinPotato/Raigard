@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import UploadCard from "@/Components/ColorFit/UploadCard";
 import CasePicker from "@/Components/ColorFit/CasePicker";
 import PreviewCard from "@/Components/ColorFit/PreviewArea";
-import ProductBackButton from "@/Components/ProductBackButton"
+import Toolbar from "@/Components/ColorFit/Toolbar";
 import { useTransition } from "@/Components/TransitionProvider";
 import { main } from "framer-motion/client";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
@@ -23,7 +23,32 @@ export default function ColorFitClient({
   const [cardImage, setCardImage] = useState<string | Blob | undefined>();
   const [caseImage, setCaseImage] = useState<string | Blob | undefined>();
   
+  const [flip, setFlip] = useState<boolean | undefined>();
+  const [clickName, setClickName] = useState<string | undefined>(colors[0].name);
+  const [currColorIndex, setColorIndex] = useState<number>(0);
+
   const { back } = useTransition();
+
+  function Flip(): void {
+    setFlip(!flip);
+  }
+
+  function Shuffle(): void {
+
+    let randomIndex = Math.floor(Math.random() * colors.length);
+    
+    while(randomIndex == currColorIndex){
+      randomIndex = Math.floor(Math.random() * colors.length);
+    }
+    
+    setColorIndex(randomIndex);
+    setCaseImage(colors[randomIndex].imageUrl);
+    setClickName(colors[randomIndex].name);
+  }
+
+  function ClearCard(): void {
+    setCardImage('');
+  }
 
   if (caseImage == null){
      setCaseImage(colors[0].imageUrl);
@@ -52,11 +77,12 @@ export default function ColorFitClient({
                 onClick={() => back()}
               />
               <UploadCard setCardImage={setCardImage}/>
-              <CasePicker setCaseImage={setCaseImage} cases={colors} />
+              <CasePicker setCaseImage={setCaseImage} cases={colors} clickName={clickName} setClickName={setClickName} setColorIndex={setColorIndex}/>
             </aside>
 
             <section className="flex-1">
-              <PreviewCard cardImage={cardImage} caseImage={caseImage} setCardImage={setCardImage}/>
+              <PreviewCard cardImage={cardImage} caseImage={caseImage} setCardImage={setCardImage} flip={flip} caseName={colors[currColorIndex].name}/>
+              <Toolbar onFlip={Flip} onShuffle={Shuffle} onClear={ClearCard}/>
             </section>
           </div>
         </div>
@@ -72,12 +98,13 @@ export default function ColorFitClient({
                 onClick={() => back()}
               />
           </div>
+          <Toolbar onFlip={Flip} onShuffle={Shuffle} onClear={ClearCard}/>
           <div className="m-5">
-            <PreviewCard cardImage={cardImage} caseImage={caseImage}  setCardImage={setCardImage}/>
+            <PreviewCard cardImage={cardImage} caseImage={caseImage}  setCardImage={setCardImage} flip={flip} caseName={colors[currColorIndex].name}/>
           </div>
           
           <UploadCard setCardImage={setCardImage}/>
-          <CasePicker setCaseImage={setCaseImage} cases={colors} />
+          <CasePicker setCaseImage={setCaseImage} cases={colors} clickName={clickName} setClickName={setClickName} setColorIndex={setColorIndex}/>
         </div>
       </main>
     );

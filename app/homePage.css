@@ -43,21 +43,6 @@ html {
   font-family: AlatsiFont;
 }
 
-@font-face {
-  font-family: JosefinSansBold; 
-  src: url("../public/Font/JosefinSans-Bold.ttf") format("truetype"); 
-}
-
-@font-face {
-  font-family: JosefinSansItalic; 
-  src: url("../public/Font/JosefinSans-Italic.ttf") format("truetype"); 
-}
-
-@font-face {
-  font-family: JosefinSansMedium; 
-  src: url("../public/Font/JosefinSans-Medium.ttf") format("truetype"); 
-}
-
 .Tagline1{
   color: black;
   font-size: clamp(0.8rem, 2vw, 1.25rem); 
