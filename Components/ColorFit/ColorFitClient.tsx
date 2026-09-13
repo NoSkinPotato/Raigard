@@ -5,8 +5,7 @@ import CasePicker from "@/Components/ColorFit/CasePicker";
 import PreviewCard from "@/Components/ColorFit/PreviewArea";
 import Toolbar from "@/Components/ColorFit/Toolbar";
 import { useTransition } from "@/Components/TransitionProvider";
-import { main } from "framer-motion/client";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import Image from "next/image";
 
 interface CaseColors {
   _id: string;
@@ -21,7 +20,7 @@ export default function ColorFitClient({
   colors: CaseColors[];
 }){
   const [cardImage, setCardImage] = useState<string | Blob | undefined>();
-  const [caseImage, setCaseImage] = useState<string | Blob | undefined>();
+  const [caseImage, setCaseImage] = useState<string | Blob | undefined>(colors[0]?.imageUrl);
   
   const [flip, setFlip] = useState<boolean | undefined>();
   const [clickName, setClickName] = useState<string | undefined>(colors[0].name);
@@ -50,22 +49,15 @@ export default function ColorFitClient({
     setCardImage('');
   }
 
-  if (caseImage == null){
-     setCaseImage(colors[0].imageUrl);
-  }
-
-  useEffect(() => {
-    if (!colors.length) return; 
-
-    colors.forEach((color) => {
-      const img = new Image();
-      img.src = color.imageUrl;
-    });
-  }, [colors]);
-
     return(
       // Desktop Version
       <main>
+        <div aria-hidden className="hidden">
+          {colors.map((c) => (
+            <Image key={c._id} src={c.imageUrl} width={1000} height={600} alt="" />
+          ))}
+        </div>
+
         <div className="min-h-screen bg-[#F7F4EF] hidden lg:block">
   ...     <div className="mx-auto flex max-w-[1500px] gap-8 px-8 pt-4">
             <aside className="w-[400px] ">

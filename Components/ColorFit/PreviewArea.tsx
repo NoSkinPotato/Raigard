@@ -9,6 +9,7 @@ interface PreviewCardProps {
 
 import { useRef } from "react";
 import { useState } from "react";
+import Image from "next/image";
 import "@/Components/ColorFit/ColorFit.css"
 import { useTransition } from "@/Components/TransitionProvider";
 
@@ -76,17 +77,6 @@ export default function PreviewCard({
   function MainPreviewDesktop(){
     return (
       <>
-        {/* <div
-          className="absolute
-            left-[-200px]
-            top-[-150px]
-            h-[700px]
-            w-[700px]
-            rounded-full
-            bg-white/30
-            blur-3xl
-          "
-        /> */}
 
         <div className="flex h-full items-center justify-center overflow-hidden">
 
@@ -168,11 +158,12 @@ export default function PreviewCard({
 
           {/* Case */}
           {caseImage && (
-            <img
-              src={caseImage}
+            <Image
+              src={caseImage as string}
               alt=""
               width={1000}
               height={600}
+              priority
               className={
                 `
                 absolute
@@ -289,11 +280,12 @@ export default function PreviewCard({
 
           {/* Case */}
           {caseImage && (
-            <img
-              src={caseImage}
+            <Image
+              src={caseImage as string}
               alt=""
               width={1000}
               height={600}
+              priority
               className={
                 `
                 absolute
